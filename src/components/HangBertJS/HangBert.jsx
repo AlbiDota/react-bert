@@ -20,6 +20,27 @@ let [ord0,ord1] = tilfeldigOrd();
 //console.log(ord0); //originalen
 //console.log(ord1); //caps lock
 
+
+//vi prøver å få bytta ut bokstavene i ord0 med min "custom font"
+const BilderSomTekst = ({ ord0 }) => {
+    const getBokstavPNG = (bokstav) => {
+        return `/alfabet/${bokstav}.png`;
+    };
+
+    return (
+        <div style={{display: "flex", gap: "3rem"}}>
+            {ord0.split("").map((bokstav, index) => bokstav.trim() ? (
+                <img 
+                    key={index} 
+                    src={getBokstavPNG(bokstav)} 
+                    alt={bokstav} />
+            ) : null
+            )}
+        </div>
+    );
+
+}
+
 main = () => { //arrow function hype !!!!!
     console.log("Velkommen til HangBert!");
     console.log("Spillet er 'Hangman'\nog temaet er 'öl i butikk'");
@@ -28,7 +49,14 @@ main = () => { //arrow function hype !!!!!
         console.log("\n" + ord1);
         console.log("Gjett en bokstav: ");
 
-        const readline = require("readline").createInterface({
+        
+        count++;
+    }
+}
+
+export default HangBert;
+
+/*const readline = require("readline").createInterface({
             input: process.stdin,
             output: process.stdout
         });
@@ -37,8 +65,4 @@ main = () => { //arrow function hype !!!!!
             //hangman(input);
             console.log(input);
             readline.close();
-        });
-        count++;
-    }
-}
-main();
+        });*/
