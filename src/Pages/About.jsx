@@ -2,7 +2,7 @@ import '../App.css';
 const About = () => {
     return (
         <div className="App">
-            <h1>KYS LOL</h1>
+            <h1>LOL</h1>
         </div>
     );
 };
