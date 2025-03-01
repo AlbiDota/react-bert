@@ -13,9 +13,9 @@ function tilfeldigOrd() {
     let abc = Math.floor(Math.random() * ordliste.length);
     //console.log(abc);
     //console.log(ordliste[abc]);
-    let ord0 = ordliste[abc];
-    let ord1 = ord0.toUpperCase().replaceAll(/[A-Z]/g,"_");
-    return [ord0, ord1];
+    let ord0 = ordliste[abc].toUpperCase();
+    //let ord1 = ord0.toUpperCase().replaceAll(/[A-Z]/g,"_");
+    return ord0;
 }
 
 //let [ord0,ord1] = tilfeldigOrd();
@@ -24,7 +24,7 @@ function tilfeldigOrd() {
 
 
 //vi prøver å få bytta ut bokstavene i ord0 med min "custom font"
-const BilderSomTekst = ({ ord0 }) => { //setter inn ord0 som parameter
+const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som parameter
     const getBokstavPNG = (bokstav) => { //setter inn bokstav som parameter
         return bokstav === "_" ? "/alfabet/0_strek.png" : `/alfabet/${bokstav.toLowerCase()}.png`;    
     };
@@ -32,13 +32,14 @@ const BilderSomTekst = ({ ord0 }) => { //setter inn ord0 som parameter
     return (
         <div style={{display: "flex", gap: "1rem",}}>
             {ord0.split("").map((bokstav, index) => 
-                bokstav.trim() ? (
-                    <img 
-                        key={index} 
-                        src={getBokstavPNG(bokstav)} 
-                        alt={bokstav} />
-                ) : null//<span key={index} style={{width: "1rem"}}></span>
-            )}
+                bokstav === " " ? (
+                    <span key={index} style={{width: "1rem"}}/>
+                    ) : tidligereGjett.includes(bokstav) ? (
+                        <img key = {index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
+                    ) : (
+                        <img key={index} src="/alfabet/0_strek.png" alt="_" />
+                    )
+                )}
         </div>
     );
 };
@@ -57,23 +58,59 @@ const BilderSomTekst = ({ ord0 }) => { //setter inn ord0 som parameter
 }
 */
 
+
+
+
+
+
+//funskcjon for spillet
 export default function HangBert() {
+    //const [ord1, setOrd1] = useState(tilfeldigOrd()[1]);
+    //console.log(ord0); //originalen
+    //console.log(ord1); //caps lock
     const [ord0, setOrd0] = useState(tilfeldigOrd()[0]);
-    const [ord1, setOrd1] = useState(tilfeldigOrd()[1]);
-    console.log(ord0); //originalen
-    console.log(ord1); //caps lock
+    const [tidligereGjett, setTidligereGjett] = useState([]); //list med tidligere gjett
+    const [antallFeil, setAntallFeil] = useState(0); //antall feil gjett
+
+    //handleGuess fra knappen
+    const handleGuess = (bokstav) => {
+        bokstav = bokstav.toUpperCase();
+
+        if (ord0.includes(bokstav)) {
+            //riktig
+            setTidligereGjett((prev) => [...prev, bokstav]);
+        } else {
+            //feil
+            setAntallFeil((prev) => prev + 1);
+        }
+    };
+
+    //funksjon for å restarte spillet
+    const restart = () => {
+        setOrd0(tilfeldigOrd());
+        setTidligereGjett([]);
+        setAntallFeil(0);
+    };
+
     return (
         <div>
             <h1>Velkommen til HangBert!</h1>
             <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2>
+            <h3>{antallFeil} / 6</h3>
             
-            <BilderSomTekst ord0={ord0}/>
+            <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett}/>
             
-            <button onClick={() => {
-                const [ord0, ord1] = tilfeldigOrd();
-                setOrd0(ord0);  
-                setOrd1(ord1);
-            }}>Kjør på!</button>
+           <div>
+                {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((bokstav) => (
+                    <button key={bokstav} 
+                    onClick={() => handleGuess(bokstav)}
+                    disabled={tidligereGjett.includes(bokstav)}
+                    style={{margin: "0.5rem"}}>
+                        {bokstav}
+                    </button>
+                ))}
+           </div>
+           <button onClick={restart}>Restart</button>
         </div>
     )
 }
