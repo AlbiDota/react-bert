@@ -3,7 +3,6 @@ import './App.css';
 import React  from 'react';
 import LoggInn from './components/LoggInn';
 import KontaktOss from './components/KontaktOss';
-import BildeFidgetToy from './components/BildeFidgetToy';
 import WorkoutForm from './components/WorkoutForm';
 import { Routes, Route } from 'react-router-dom';
 import Spill from './Pages/Spill';
