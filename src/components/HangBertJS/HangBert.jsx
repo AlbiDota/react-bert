@@ -27,12 +27,12 @@ const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som pa
     };
 
     return (
-        <div style={{display: "flex", gap: "1rem",}}>
+        <div className="spillBokstaver" style={{display: "flex", gap: "1rem",}}>
             {ord0.split("").map((bokstav, index) => 
                 bokstav === " " ? (
                     <span key={index} style={{width: "1rem"}}/>
                     ) : tidligereGjett.includes(bokstav) ? (
-                        <img key = {index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
+                        <img key={index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
                     ) : (
                         <img key={index} src="/alfabet/0_strek.png" alt="_" />
                     )
@@ -90,6 +90,7 @@ export default function HangBert() {
                         margin: "0.5rem",cursor:"pointer",width:"2rem",
                         opacity: tidligereGjett.includes(bokstav) ? 0.5 : 1,
                     }}
+                    id = {bokstav}
                     />
                 ))}
            </div>

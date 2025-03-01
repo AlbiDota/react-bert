@@ -1,5 +1,10 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
-    gap: 10px;
+    display: grid;  
+    grid-template-columns: repeat(9, 1fr); /* 3 equal columns */
+    gap: 0.6rem; /* Space between grid items */
+}
+
+.spillBokstaver img{
+    width: 3%;
+    height: auto;
 }
