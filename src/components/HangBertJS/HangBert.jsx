@@ -1,6 +1,7 @@
 //HangBert.java, men i javascript
 import React from "react";
 import { useState } from "react";
+import "./HangBert.css";
 
 //ordliste som inneholder ordene som skal gjettes
 let ordliste = [
@@ -17,10 +18,6 @@ function tilfeldigOrd() {
     //let ord1 = ord0.toUpperCase().replaceAll(/[A-Z]/g,"_");
     return ord0;
 }
-
-//let [ord0,ord1] = tilfeldigOrd();
-//console.log(ord0); //originalen
-//console.log(ord1); //caps lock
 
 
 //vi prøver å få bytta ut bokstavene i ord0 med min "custom font"
@@ -44,24 +41,6 @@ const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som pa
     );
 };
 
-/*main = () => { //arrow function hype !!!!!
-    console.log("Velkommen til HangBert!");
-    console.log("Spillet er 'Hangman'\nog temaet er 'öl i butikk'");
-    let count = 0;
-    while (count < 7 && ord1.includes("_")) {
-        console.log("\n" + ord1);
-        console.log("Gjett en bokstav: ");
-
-        
-        count++;
-    }
-}
-*/
-
-
-
-
-
 
 //funskcjon for spillet
 export default function HangBert() {
@@ -75,13 +54,12 @@ export default function HangBert() {
     //handleGuess fra knappen
     const handleGuess = (bokstav) => {
         bokstav = bokstav.toUpperCase();
+        if (tidligereGjett.includes(bokstav) || antallFeil >= 6) return;
 
-        if (ord0.includes(bokstav)) {
-            //riktig
-            setTidligereGjett((prev) => [...prev, bokstav]);
-        } else {
-            //feil
-            setAntallFeil((prev) => prev + 1);
+        setTidligereGjett((prev) => [...prev, bokstav]);
+       
+        if (!ord0.includes(bokstav)) { //hvis ord0 ikke inneholder bokstav
+            setAntallFeil((prev) => prev + 1); //øker antall feil med 1
         }
     };
 
@@ -100,20 +78,43 @@ export default function HangBert() {
             
             <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett}/>
             
-           <div>
+           <div className="grid-container">
                 {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((bokstav) => (
-                    <button key={bokstav} 
+                    <img key={bokstav} 
+                    src={`/alfabet/${bokstav.toLowerCase()}.png`}
+                    alt={bokstav}
                     onClick={() => handleGuess(bokstav)}
                     disabled={tidligereGjett.includes(bokstav)}
-                    style={{margin: "0.5rem"}}>
-                        {bokstav}
-                    </button>
+                    style=
+                    {{
+                        margin: "0.5rem",cursor:"pointer",width:"2rem",
+                        opacity: tidligereGjett.includes(bokstav) ? 0.5 : 1,
+                    }}
+                    />
                 ))}
            </div>
            <button onClick={restart}>Restart</button>
         </div>
     )
 }
+//let [ord0,ord1] = tilfeldigOrd();
+//console.log(ord0); //originalen
+//console.log(ord1); //caps lock
+
+
+/*main = () => { //arrow function hype !!!!!
+    console.log("Velkommen til HangBert!");
+    console.log("Spillet er 'Hangman'\nog temaet er 'öl i butikk'");
+    let count = 0;
+    while (count < 7 && ord1.includes("_")) {
+        console.log("\n" + ord1);
+        console.log("Gjett en bokstav: ");
+
+        
+        count++;
+    }
+}
+*/
 
 /*const readline = require("readline").createInterface({
             input: process.stdin,
