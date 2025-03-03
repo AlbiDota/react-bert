@@ -23,9 +23,9 @@ const KontaktOss =()=>{
 
         {synlig && (
             <div className="kontaktInfo">
-                <p><strong>Kontakt oss!!</strong></p>
-                <p><strong>Telefon:</strong> +47 12345678</p>
-                <p><strong>Epost:</strong> epost@epost.com</p>
+                <p><strong>Kontaktinfo!</strong></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/AlbiDota">github.com/AlbiDota</a> </p>
+                <p><strong>Epost:</strong> <a href="mailto:alisaele1@gmail.com">alisaele1@gmail.com </a> </p>
             </div>
         )}
     </div>

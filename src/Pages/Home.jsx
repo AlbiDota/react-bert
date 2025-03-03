@@ -1,5 +1,5 @@
 import logo from '../bert.png';
-import '../App.css';
+import '../stylesheet/App.css';
 import LoggInn from '../components/LoggInn';
 import KontaktOss from '../components/KontaktOss';
 import WorkoutForm from '../components/WorkoutForm';

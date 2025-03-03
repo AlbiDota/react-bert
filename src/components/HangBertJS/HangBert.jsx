@@ -61,7 +61,7 @@ export default function HangBert() {
         setTimeout(() => {
             const lossAudio = new Audio("/HangBertAssets/audio/lossAudio.mp3");
             lossAudio.play();
-        }, 345);
+        }, 123);
         setTimeout(() => setShowPopupL(false), 8000);
     }
 
@@ -69,6 +69,7 @@ export default function HangBert() {
         setShowPopupW(true);
         setTimeout(() => {
             const winAudio = new Audio("/HangBertAssets/audio/winAudio.mp3")
+            winAudio.volume = 0.3;
             winAudio.play();
         }, 345);
         setTimeout(() => setShowPopupW(false),5000);
@@ -85,8 +86,9 @@ export default function HangBert() {
         {/*telling og lyd for feil bokstav*/}
         if (!ord0.includes(bokstav)) { //hvis ord0 ikke inneholder bokstav
             setAntallFeil((prev) => prev + 1); //øker antall feil med 1
-            const wrongAudio = new Audio("/HangBertAssets/audio/wrongAudio.mp3");
+            const wrongAudio = new Audio("/HangBertAssets/audio/wrongAudio.mp3"); //(Math.random() * (1 - 0.1) + 0.1);
             wrongAudio.volume = 0.15; //setter volum til 15% den var jævla høy jesus
+            wrongAudio.playbackRate = (Math.random() * (2.4 - 0.3) + 0.6);
             wrongAudio.play();
 
             //hvis antall feil er 6, så spilles game over lyd etter en liten delay
@@ -94,10 +96,14 @@ export default function HangBert() {
             if (antallFeil === 5) {
                 GameOver();
             }
-        } else { //hvis ord0 inneholder bokstaven, teller vi ant riktige
+        } else { //hvis ord0 inneholder bokstaven, teller vi ant riktige og spiller en bing
             const gjettetRiktig = ord0.split("").every(b =>
                 b === " " || [...tidligereGjett, bokstav].includes(b)
             );
+
+            const correctAudio = new Audio("/HangBertAssets/audio/correctAudio.mp3");
+            correctAudio.volume = 0.1;
+            correctAudio.play();
 
             if (gjettetRiktig) {//hvis gjettetRiktig er sann
                 setGameWon(true);

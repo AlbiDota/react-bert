@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;border-radius: 6969px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 1.8s linear;
+  }
+}
+
+.App-header {
+  background-color: #970328;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(29, 212, 29);
+}
+
+.App-link {
+  color: #fb61da;
+}
+
+.kontaktDiv {
+  
+}
+
+.kontaktInfo a{
+  font-size: 111%;
+  
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+  
+}
+
+/* ---- Footer ---- */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+#footerLeft {
+  float: left;
+  margin: auto -999px auto auto;
+  padding: 0;
+  text-align: start;
+}
+
+#footerMid {
+  text-align:center;
+}
+
+.back-to-top {
+  background-color: #0a71de;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 1.4rem;
+  transition: background-color 0.4s ease;
+
+}
+
+.back-to-top:hover {
+  background-color: #1b84f4;
+}
+
+/* ----- End of Footer ----- */

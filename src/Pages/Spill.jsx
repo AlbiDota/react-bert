@@ -1,4 +1,4 @@
-import '../App.css';
+import '../stylesheet/App.css';
 import BildeFidgetToy from '../components/FidgetMappe/BildeFidgetToy';
 import HangBert from '../components/HangBertJS/HangBert';
 
