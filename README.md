@@ -20,4 +20,4 @@ ______
 * npm start
 ```
 ______
-- (AlbiDota @ github)[https://github.com/AlbiDota]
+- [AlbiDota @ github](https://github.com/AlbiDota)
