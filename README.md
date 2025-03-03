@@ -14,9 +14,6 @@ ______
 * npm install
 ```
 ```
-* npm install web-vitals
-```
-```
 * npm start
 ```
 ______
