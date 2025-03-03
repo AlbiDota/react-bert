@@ -8,7 +8,7 @@ ______
 * git clone https://github.com/AlbiDota/react-bert
 ```
 ```
-* cd *react-bert*
+* cd react-bert
 ```
 ```
 * npm install
