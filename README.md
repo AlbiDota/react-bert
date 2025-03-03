@@ -1,9 +1,14 @@
-# REACTJS PRACTICE!! HAVING FUN AND GOOFING AROUND :D
+# react-bert
+## REACTJS PRACTICE!!
+### HAVING FUN AND GOOFING AROUND :D
 
 
 ## want to run the react app locally?
 ```
 * git clone https://github.com/AlbiDota/react-bert
+```
+```
+* cd *react-bert*
 ```
 ```
 * npm install
@@ -15,3 +20,4 @@
 * npm start
 ```
 
+- (AlbiDota @ github)[https://github.com/AlbiDota]
