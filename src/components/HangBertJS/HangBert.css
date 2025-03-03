@@ -2,11 +2,14 @@
 
 }
 
-.grid-container {
+.grid-container { 
     display: grid;  
-    grid-template-columns: repeat(9, 1fr); /* 3 equal columns */
-    gap: 0.6rem; /* Space between grid items */
-    padding: 5rem;
+    grid-template-columns: repeat(9, 1fr); /* ni kolonner */
+    gap: 0.6rem; /* mellomrom mellom "tastene" */
+    padding-left: 19rem; /* mellomrom mellom "tastaturet" og ytterkant av siden */
+    padding-right: 19rem; 
+    padding-top: 4rem;
+    padding-bottom: 2rem;
 }
 
 .spillBokstaver img{
@@ -19,7 +22,7 @@
     
 }
 
-.popup {
+.popupL, .popupW {
     position: fixed;
     top: 0;
     left: 0;
@@ -31,11 +34,12 @@
     z-index: 1000;
 }
 
-.gameOverpic {
+.gameOverpic, .gameWonpic {
     width: 80%;
     max-width: 600px;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

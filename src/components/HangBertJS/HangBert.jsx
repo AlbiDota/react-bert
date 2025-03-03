@@ -48,21 +48,32 @@ export default function HangBert() {
     //const [ord1, setOrd1] = useState(tilfeldigOrd()[1]);
     //console.log(ord0); //originalen
     //console.log(ord1); //caps lock
-    const [ord0, setOrd0] = useState(tilfeldigOrd()[0]);
+    const [ord0, setOrd0] = useState(tilfeldigOrd());
     const [tidligereGjett, setTidligereGjett] = useState([]); //list med tidligere gjett
     const [antallFeil, setAntallFeil] = useState(0); //antall feil gjett
-    const [showPopup, setShowPopup] = useState(false); //viser game over png og lyd
+    const [showPopupL, setShowPopupL] = useState(false); //viser game over png og lyd
+    const [showPopupW, setShowPopupW] = useState(false); //viser game won png og lyd
     const [gameWon, setGameWon] = useState(false); //holder styr på om spellet er vunnet
 
     //funksjon for å vise game over png og lyd i åtte sek
     const GameOver = () => {
-        setShowPopup(true);
+        setShowPopupL(true);
         setTimeout(() => {
             const lossAudio = new Audio("/HangBertAssets/audio/lossAudio.mp3");
             lossAudio.play();
         }, 345);
-        setTimeout(() => setShowPopup(false), 8000);
+        setTimeout(() => setShowPopupL(false), 8000);
     }
+
+    const GameWon = () => {
+        setShowPopupW(true);
+        setTimeout(() => {
+            const winAudio = new Audio("/HangBertAssets/audio/winAudio.mp3")
+            winAudio.play();
+        }, 345);
+        setTimeout(() => setShowPopupW(false),5000);
+    }
+
 
     //handleGuess fra knappen
     const handleGuess = (bokstav) => {
@@ -75,6 +86,7 @@ export default function HangBert() {
         if (!ord0.includes(bokstav)) { //hvis ord0 ikke inneholder bokstav
             setAntallFeil((prev) => prev + 1); //øker antall feil med 1
             const wrongAudio = new Audio("/HangBertAssets/audio/wrongAudio.mp3");
+            wrongAudio.volume = 0.15; //setter volum til 15% den var jævla høy jesus
             wrongAudio.play();
 
             //hvis antall feil er 6, så spilles game over lyd etter en liten delay
@@ -83,29 +95,15 @@ export default function HangBert() {
                 GameOver();
             }
         } else { //hvis ord0 inneholder bokstaven, teller vi ant riktige
-            const gjettetRiktig = ord0.split("").every(bokstav =>
-                bokstav === " " || tidligereGjett.includes(bokstav)
+            const gjettetRiktig = ord0.split("").every(b =>
+                b === " " || [...tidligereGjett, bokstav].includes(b)
             );
-        } // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
-        // DET VAR HER JEG SLAPP
 
-        
-
-        
+            if (gjettetRiktig) {//hvis gjettetRiktig er sann
+                setGameWon(true);
+                GameWon();
+            }
+        }
     };
 
     //funksjon for å restarte spillet
@@ -113,16 +111,20 @@ export default function HangBert() {
         setOrd0(tilfeldigOrd());
         setTidligereGjett([]);
         setAntallFeil(0);
+        setGameWon(false);
+        setShowPopupL(false);
+        setShowPopupW(false);
     };
 
     return (
         <div className="HangBertContainer">
+            <restart/>
             <h1>Velkommen til HangBert!</h1>
             <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2>
             <h3>{antallFeil} / 6</h3>
             
             {/* bilde for hangmanen og bokstavene*/}
-            <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "18rem"}}/>
+            <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "22rem"}}/>
             <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
 
             <div className="HangBertFlex"></div>
@@ -132,12 +134,14 @@ export default function HangBert() {
                         <img key={bokstav} 
                         src={`/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`}
                         alt={bokstav}
-                        onClick={() => handleGuess(bokstav)}
-                        disabled={tidligereGjett.includes(bokstav) || antallFeil === 6}
-                        style=
-                        {{
-                            margin: "0.5rem",cursor:"pointer",width:"2rem",
-                            opacity: tidligereGjett.includes(bokstav) ? 0.5 : 1,
+                        onClick={() => {if (!(tidligereGjett.includes(bokstav) || antallFeil === 6 || gameWon)) {
+                            handleGuess(bokstav);}
+                        }}
+                        
+                        style= {{
+                            margin: "0.5rem",width:"2rem",
+                            opacity: tidligereGjett.includes(bokstav) || gameWon ? 0.5 : 1,
+                            cursor:tidligereGjett.includes(bokstav) || gameWon ? "not-allowed" : "pointer"
                         }}
                         id = {bokstav}
                         />
@@ -148,9 +152,16 @@ export default function HangBert() {
            <br/><br/><br/>
 
            {/*game over png som ska dukke opp når 'GameOver()' blir kalt*/}
-           {showPopup && (
-                <div className="popup">
+           {showPopupL && (
+                <div className="popupL">
                     <img src="/HangBertAssets/gameOver.png" className="gameOverPic" alt="game over"/>
+                </div>
+           )}
+
+           {/*game won png som ska dukke opp når 'GameWon()' blir kalt*/}
+           {showPopupW && (
+                <div className="popupW">
+                    <img src="/HangBertAssets/gameWon.png" className="gameWonPic" alt="game won"/>
                 </div>
            )}
         </div>
