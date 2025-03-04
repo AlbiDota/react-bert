@@ -3,8 +3,8 @@ import KontaktOss from "./KontaktOss";
 const NavBar = () => {
   return (
 
-    <nav>
-      <ul>
+    <nav className="navBar">
+      <ul className="navBar-links">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -14,7 +14,7 @@ const NavBar = () => {
         <li>
           <NavLink to="/About">About</NavLink>
         </li>
-        <li style={{ position:"relative", float: 'right'}}>
+        <li style={{  float: 'right'}}>
           <KontaktOss/>
         </li>
       </ul>

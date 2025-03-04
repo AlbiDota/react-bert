@@ -49,9 +49,9 @@
 
 /* ---- Footer ---- */
 .footer {
-  background-color: #333;
+  background-image: linear-gradient(yellow,red);
   color: #fff;
-  padding: 20px;
+  padding: 1rem;
 }
 
 #footerLeft {
@@ -83,3 +83,41 @@
 }
 
 /* ----- End of Footer ----- */
+
+/* ---- Navbar ---- */
+
+.navBar {
+  /*background-image: linear-gradient(to right, red,yellow);*/
+  position: sticky;
+  top:0;
+  display:flex;
+  width: 100%;
+  padding: 0;
+  z-index: 999;
+  border: 0.3rem solid #e7e7e7;
+
+}
+
+.navBar-links {
+  list-style-type:none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navBar li {
+  display: inline;
+  float: left;
+  padding: 1rem;
+  text-align:center;
+  border-right: 0.2rem solid #333;
+}
+
+.navBar li:last-child { /*siste i lista ska ikke ha "border" til høyre*/
+  border-right: none;
+  position:relative;
+  float: right;
+}
+
+/* ---- ENnd of navbar ---- */
