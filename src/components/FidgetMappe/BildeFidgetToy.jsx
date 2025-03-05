@@ -40,20 +40,6 @@ const BildeFidgetToy = () => {
                         transform: rotate(360deg);
                     }
                 }
-                
-                .spinneknapp {
-                    padding: 10px 20px;
-                    background-color:rgb(224, 185, 9);
-                    color: black;
-                    border: ;
-                    cursor: pointer;
-                    font-size: 32px;
-                    border-radius: 10px;
-                }
-                
-                .spinneknapp:hover{
-                    background-color: #45a049;
-                }
 
             `}</style>
 

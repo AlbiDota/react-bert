@@ -9,12 +9,15 @@ const NavBar = () => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/Spill">Spill</NavLink>
+          <NavLink to="/HangBertPage">HangBert</NavLink>
+        </li>
+        <li>
+          <NavLink to="/SpinnerPage">Fidget Spinner</NavLink>
         </li>
         <li>
           <NavLink to="/About">About</NavLink>
         </li>
-        <li style={{  float: 'right'}}>
+        <li>
           <KontaktOss/>
         </li>
       </ul>

@@ -124,7 +124,7 @@ export default function HangBert() {
 
     return (
         <div className="HangBertContainer">
-            <restart/>
+            <restart/><br/><br/><br/>
             <h1>Velkommen til HangBert!</h1>
             <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2>
             <h3>{antallFeil} / 6</h3>
@@ -153,7 +153,7 @@ export default function HangBert() {
                         />
                     ))}
                 </div>
-           <div className="HangBertFlex"></div>
+           <div className="HangBertFlex"></div><br/><br/>
            <button onClick={restart}>Restart</button>
            <br/><br/><br/>
 

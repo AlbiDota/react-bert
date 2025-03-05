@@ -11,16 +11,16 @@ const Footer = () => {
                   <li><ul id="footerLeft">
                       <li><h3>Contact</h3></li>
                       <li>
-                          <label HTMLFor="phone">Tlf: </label>
-                          <a href="tlf:+4712345678">+47 12345678</a>
+                            <strong><label HTMLFor="email">GitHub: </label></strong>
+                            <a href="https://github.com/AlbiDota">github.com/AlbiDota</a>
                       </li>
                       <li>
-                          <label HTMLFor="email">E-mail: </label>
-                          <a href="mailto:gruppe2@app2000.no" >gruppe2@app2000.no</a>
+                            <strong><label HTMLFor="email">Epost: </label></strong>
+                            <a href="mailto:alisaele1@gmail.com">alisaele1@gmail.com </a>
                       </li>
                   </ul></li>
                   <li><ul id="footerMid">
-                      <li><p>&copy; Group 2.</p></li>
+                      <li><p> react-bert</p></li>
                       <li><button className="back-to-top"
                       onClick={scrollToTop}>
                           Back to top

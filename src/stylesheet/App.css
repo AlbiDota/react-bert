@@ -1,31 +1,73 @@
-.App {
-  text-align: center;
+/* ---- Reset styles ---- */
+/* default verdier kinda */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
 }
+
+body {
+  height: 100%;
+  /*display:flex;
+  flex-direction: column;*/
+  text-align: center;
+  font-family: Arial, sans-serif; 
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px; 
+  background-color: #D8BFD8;
+}
+/*
+.main-flex-container {
+  flex:1;
+}
+*/
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+    background-color: #800080;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    transition: background-color 0.4s ease;
+
+}
+button:hover {
+  background-color: #720e9e;
+}
+
+/* FARGER FOR NOEN AV TINGA
+https://cssgradient.io/shades-of-purple/
+PURPLE #800080 FOR KNAPPER #800080
+YAHOO PURPLE #720e9e FOR HOVER AV KNAPP #720e9e
+PLUM #DDA0DD FOR FOOTER OG HEADER #DDA0DD
+THISTLE #D8BFD8 FOR BAKGRUNN PÅ BODY #D8BFD8
+LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
+*/
+
+/* ---- End of reset ---- */
 
 .App-logo {
   height: 40vmin;
-  pointer-events: none;border-radius: 6969px;
+  pointer-events: none;
+  border-radius: 25%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 1.8s linear;
   }
-}
-
-.App-header {
-  background-color: #970328;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(29, 212, 29);
-}
-
-.App-link {
-  color: #fb61da;
 }
 
 .kontaktDiv {
@@ -49,9 +91,14 @@
 
 /* ---- Footer ---- */
 .footer {
-  background-image: linear-gradient(yellow,red);
-  color: #fff;
+  /*position:absolute;*/
+  bottom: 0;
+  background-color: #DDA0DD;
+  color: white;
   padding: 1rem;
+  border-top:0.3rem solid #E6E6FA;;
+  width: 100%
+  
 }
 
 #footerLeft {
@@ -66,8 +113,8 @@
 }
 
 .back-to-top {
-  background-color: #0a71de;
-  color: white;
+  background-color: #800080;
+  color: #E6E6FA;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -79,7 +126,7 @@
 }
 
 .back-to-top:hover {
-  background-color: #1b84f4;
+  background-color: #720e9e;
 }
 
 /* ----- End of Footer ----- */
@@ -92,32 +139,35 @@
   top:0;
   display:flex;
   width: 100%;
+  height: 5rem;
   padding: 0;
   z-index: 999;
-  border: 0.3rem solid #e7e7e7;
-
+  border-bottom: 0.3rem solid #E6E6FA;
+  background-color: #DDA0DD; /*https://cssgradient.io/shades-of-purple/ PLUM*/
+  color: white;
 }
 
 .navBar-links {
-  list-style-type:none;
+  list-style-type: none;
   text-decoration: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between; /* Ensures left and right alignment */
+  align-items: center;
+  width: 100%;
 }
 
 .navBar li {
-  display: inline;
-  float: left;
+  display: inline-block; /* Ensures inline placement */
   padding: 1rem;
-  text-align:center;
-  border-right: 0.2rem solid #333;
+  text-align: center;
+  border-right: 0.2rem solid #E6E6FA;
 }
 
 .navBar li:last-child { /*siste i lista ska ikke ha "border" til høyre*/
   border-right: none;
-  position:relative;
-  float: right;
+  margin-left: auto;
 }
 
 /* ---- ENnd of navbar ---- */
