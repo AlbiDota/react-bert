@@ -6,6 +6,7 @@ import HangBertPage from './Pages/HangBertPage.jsx';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import SpinnerPage from './Pages/SpinnerPage.jsx';
+import ChatPage from "./Pages/ChatPage.jsx";
 
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/HangBertPage" element={<HangBertPage/>} />
         <Route path="/SpinnerPage" element={<SpinnerPage/>} />
+        <Route path="/ChatPage" element={<ChatPage/>} />
         <Route path="/About" element={<About/>} />
+        
       </Route>
     </Routes>
     

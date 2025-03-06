@@ -1,5 +1,5 @@
 import '../stylesheet/App.css';
-const About = () => {
+const ChatPage = () => {
     return (
         <div className="App">
             <h1>LOL</h1>
@@ -8,4 +8,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default ChatPage;

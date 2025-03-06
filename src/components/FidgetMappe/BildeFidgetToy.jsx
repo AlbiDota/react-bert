@@ -14,7 +14,7 @@ const BildeFidgetToy = () => {
             //slutt å spinn
         setTimeout(()=>{
         settSpinner(false);
-        }, 90); //90 millisekunder delay før den slutter å spinne
+        }, 90); // millisekunder delay før den slutter å spinne
 
     };
 
@@ -45,7 +45,7 @@ const BildeFidgetToy = () => {
 
             <img src={bilde} className="spinny-bilde" alt="bilde" />
             {/*får faen ikke fløtta knappen tilbake under bildet*/}
-            <br/>
+            <br/><br/><br/><br/><br/>
             <button onClick={handleClick} className="spinneknapp">
                 Spinn!
             </button>

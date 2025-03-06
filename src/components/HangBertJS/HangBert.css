@@ -1,45 +1,63 @@
 .HangBertContainer {
-
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .grid-container { 
     display: grid;  
+    flex:1;
     grid-template-columns: repeat(9, 1fr); /* ni kolonner */
     gap: 0.6rem; /* mellomrom mellom "tastene" */
-    padding-left: 19rem; /* mellomrom mellom "tastaturet" og ytterkant av siden */
-    padding-right: 19rem; 
+    padding-left: 14rem; /* mellomrom mellom "tastaturet" og ytterkant av siden */
+    padding-right: 14rem; 
     padding-top: 4rem;
     padding-bottom: 2rem;
 }
 
 .spillBokstaver img{
-    width: 6%;
+    width: 8rem;
     height: auto;
     margin: 1rem, auto, 1rem, auto;
 }
 
+
 .HangBertFlex {
-    
+    flex:0.3;
 }
+
 
 .popupL, .popupW {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vh;
-    height: 100%;
-    display: flex;
+    width: 100vw; /* detta betyr 100% av "viewport width"*/
+    height: 100vh;/* detta betyr 100% av "viewport height"*/
+    display:flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1001;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeInOut 8s ease-in-out;
 }
 
-.gameOverpic, .gameWonpic {
-    width: 100%;
-    animation: fadeIn 1s ease-in-out;
+.gameOverPic, .gameWonPic {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1002;
 }
 
-@keyframes fadeIn {
+@keyframes fadeIn { /* gamle animasjonen*/
     from { opacity: 0; }
-    to { opacity: 1; }
+    to { opacity: 1;}
+}
+@keyframes fadeInOut { /* nye animasjonen */
+    0% { opacity: 0; }
+    10% { opacity: 1; } /* Fades in quickly */
+    90% { opacity: 1; } /* Holds the opacity for most of the time */
+    100% { opacity: 0; } /* Fades out smoothly */
 }

@@ -63,6 +63,7 @@ export default function HangBert() {
             lossAudio.play();
         }, 123);
         setTimeout(() => setShowPopupL(false), 8000);
+        setTimeout(() => restart(), 9000);
     }
 
     const GameWon = () => {
@@ -73,6 +74,7 @@ export default function HangBert() {
             winAudio.play();
         }, 345);
         setTimeout(() => setShowPopupW(false),5000);
+        setTimeout(() => restart(), 6000);
     }
 
 
@@ -123,17 +125,20 @@ export default function HangBert() {
     };
 
     return (
-        <div className="HangBertContainer">
+        <div >
             <restart/><br/><br/><br/>
             <h1>Velkommen til HangBert!</h1>
-            <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2>
+            <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2><br/>
             <h3>{antallFeil} / 6</h3>
-            
+            {showPopupL && (
+                <h2 >Ordet var {ord0}</h2>
+            )}
+            <div className="HangBertContainer">
             {/* bilde for hangmanen og bokstavene*/}
-            <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "22rem"}}/>
+            <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem"}}/>
             <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
 
-            <div className="HangBertFlex"></div>
+            <div className="HangBertFlex"/>
             {/*'tastaturet'*/}
             <div className="grid-container">
                     {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((bokstav) => (
@@ -146,21 +151,22 @@ export default function HangBert() {
                         
                         style= {{
                             margin: "0.5rem",width:"2rem",
-                            opacity: tidligereGjett.includes(bokstav) || gameWon ? 0.5 : 1,
+                            opacity: tidligereGjett.includes(bokstav) || gameWon || antallFeil === 6? 0.5 : 1,
                             cursor:tidligereGjett.includes(bokstav) || gameWon ? "not-allowed" : "pointer"
                         }}
                         id = {bokstav}
                         />
                     ))}
                 </div>
-           <div className="HangBertFlex"></div><br/><br/>
+                </div>
+           <div className="HangBertFlex"/><br/><br/>
            <button onClick={restart}>Restart</button>
            <br/><br/><br/>
 
            {/*game over png som ska dukke opp når 'GameOver()' blir kalt*/}
            {showPopupL && (
                 <div className="popupL">
-                    <img src="/HangBertAssets/gameOver.png" className="gameOverPic" alt="game over"/>
+                    <img src="/HangBertAssets/gameOver.png" className="gameOverPic" alt="game over"/> 
                 </div>
            )}
 
