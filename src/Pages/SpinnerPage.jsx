@@ -6,7 +6,7 @@ const SpinnerPage = () => {
         <div className="App">
             <br/><br/><br/><br/><br/><br/><br/>
             <BildeFidgetToy/>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            
         </div>
     );
 };

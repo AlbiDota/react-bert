@@ -17,9 +17,9 @@ const KontaktOss =()=>{
         {`
           
         `}
-      </style>
+        </style>
 
-        <button className="open-button" onClick={toggleInfo}>Kontakt oss!</button>
+        <button className="open-button" onClick={toggleInfo}>Kontakt</button>
 
         {synlig && (
             <div className="kontaktInfo">

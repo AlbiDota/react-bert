@@ -7,7 +7,7 @@
   
 }
 
-body {
+html, body, .App {
   min-height: 100vh;
   min-width: 100vw;
   display:flex;
@@ -65,24 +65,37 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 /* ---- End of reset ---- */
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  border-radius: 25%;
+	height: 40vmin;
+	width: 40vmin;
+	align-self: center;
+	pointer-events: none;
+	border-radius: 25%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 1.8s linear;
-  }
+	.App-logo {
+	animation: App-logo-spin infinite 1.8s linear;
+	}
 }
 
 .kontaktDiv {
-  
+	display:flex;
+	flex-direction: column;
+
 }
 
+.open-button{
+	position:sticky;
+	margin:0;
+}
+
+.kontaktInfo {
+	font-size: 111%;
+	border: 0.1rem solid #E6E6FA;
+
+}
 .kontaktInfo a{
-  font-size: 111%;
-  
+	font-size: 111%;
 }
 
 @keyframes App-logo-spin {
@@ -97,42 +110,43 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 
 /* ---- Footer ---- */
 .footer {
-  /*position:absolute;*/
-  bottom: 0;
-  background-color: #DDA0DD;
-  color: white;
-  padding: 1rem;
-  border-top:0.3rem solid #E6E6FA;;
-  width: 100%
-  
+	/*position:absolute;*/
+	margin-top:auto;
+	bottom: 0;
+	background-color: #DDA0DD;
+	color: white;
+	padding: 1rem;
+	border-top:0.3rem solid #E6E6FA;
+	width: 100%
+
 }
 
 #footerLeft {
-  float: left;
-  margin: auto -999px auto auto;
-  padding: 0;
-  text-align: start;
+	float: left;
+	margin: auto -999px auto auto;
+	padding: 0;
+	text-align: start;
 }
 
 #footerMid {
-  text-align:center;
+	text-align:center;
 }
 
 .back-to-top {
-  background-color: #800080;
-  color: #E6E6FA;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin-top: 1.4rem;
-  transition: background-color 0.4s ease;
+	background-color: #800080;
+	color: #E6E6FA;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 1rem;
+	margin-top: 1.4rem;
+	transition: background-color 0.4s ease;
 
 }
 
 .back-to-top:hover {
-  background-color: #720e9e;
+	background-color: #720e9e;
 }
 
 /* ----- End of Footer ----- */
@@ -140,40 +154,89 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 /* ---- Navbar ---- */
 
 .navBar {
-  /*background-image: linear-gradient(to right, red,yellow);*/
-  position: sticky;
-  top:0;
-  display:flex;
-  width: 100%;
-  height: 5rem;
-  padding: 0;
-  z-index: 999;
-  border-bottom: 0.3rem solid #E6E6FA;
-  background-color: #DDA0DD; /*https://cssgradient.io/shades-of-purple/ PLUM*/
-  color: white;
+	/*background-image: linear-gradient(to right, red,yellow);*/
+	position: sticky;
+	top:0;
+	display:flex;
+	width: 100%;
+	height: 5rem;
+	padding: 0;
+	z-index: 999;
+	border-bottom: 0.3rem solid #E6E6FA;
+	background-color: #DDA0DD; /*https://cssgradient.io/shades-of-purple/ PLUM*/
+	color: white;
 }
 
 .navBar-links {
-  list-style-type: none;
-  text-decoration: none;
-  
-  display: flex;
-  justify-content: space-between; /* Ensures left and right alignment */
-  align-items: center;
-  width: 100%;
-}
+	list-style-type: none;
+	text-decoration: none;
+
+	display: flex;
+	justify-content: space-between; /* Ensures left and right alignment */
+	align-items: center;
+	width: 100%;
+	}
 
 .navBar li {
-  display: inline-block; /* Ensures inline placement */
-  padding: 1rem;
-  text-align: center;
-  border-right: 0.2rem solid #E6E6FA;
+	display: inline-block; /* Ensures inline placement */
+	padding: 1rem;
+	text-align: center;
+	border-right: 0.2rem solid #E6E6FA;
 
 }
 
 .navBar li:last-child { /*siste i lista ska ikke ha "border" til høyre*/
-  border-right: none;
-  margin-left: auto;
+	border-right: none;
+	margin-left: auto;
+	margin-right: 3rem;
 }
 
 /* ---- ENnd of navbar ---- */
+
+/* ---- ChatBox COMPONENT ---- */
+.ChatBox-wrapper {
+	display: flex;
+	margin: auto;
+	flex-direction: column;
+	height: 70vh;
+	width: 50vw;
+	border: 0.1rem solid black;
+	border-radius: 0.4rem;
+}
+
+.ChatOutputBox {
+	flex: 1;
+	overflow-y: auto;
+	overflow-x:hidden;
+	padding: 0.5rem;
+	border: 0.1rem solid black;
+	text-align: start;
+	
+}
+
+.ChatOutputBox div {
+	border-bottom: 0.1rem solid #E6E6FA;
+}
+.ChatOutputBox div:first-child {
+	border-top: 0.1rem solid #E6E6FA;
+}
+
+.ChatInputBox {
+	display: flex;
+	
+}
+.ChatInputBox button{
+	flex: 0.25;
+	
+}
+
+.ChatInputBox input {
+	flex: 0.75;
+	border: 0.1rem solid black;
+	padding: 0.5rem;
+	background-color: #E6E6FA;
+}
+
+
+/* ---- End of ChatBox COMPONENT ---- */
+

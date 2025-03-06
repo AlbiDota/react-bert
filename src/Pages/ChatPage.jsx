@@ -1,8 +1,9 @@
+import ChatBox from '../components/ChatBox/ChatBox';
 import '../stylesheet/App.css';
 const ChatPage = () => {
     return (
         <div className="App">
-            <h1>LOL</h1>
+            <ChatBox/>
             
         </div>
     );

@@ -5,7 +5,7 @@ const HangBertPage = () => {
     return (
         <div className="App">
             <HangBert/>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            
         </div>
     );
 };
