@@ -79,8 +79,8 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 }
 
 .kontaktDiv {
-	display:flex;
-	flex-direction: column;
+	display:inline-block;
+	position:relative;
 
 }
 
@@ -90,9 +90,14 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 }
 
 .kontaktInfo {
-	font-size: 111%;
+	position:absolute;
+	font-size: 1.2rem;
 	border: 0.1rem solid #E6E6FA;
-
+	z-index: 1;
+	right:0; 
+	margin-top:3rem; /*mellomrom mellom knappen og boksen (eller teksten idk)*/
+	padding:0.5rem; /*mellomrom mellom tekst og boks innvendig*/
+	word-wrap: break-word; 
 }
 .kontaktInfo a{
 	font-size: 111%;
@@ -202,6 +207,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	width: 50vw;
 	border: 0.1rem solid black;
 	border-radius: 0.4rem;
+
 }
 
 .ChatOutputBox {
@@ -223,7 +229,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 
 .ChatInputBox {
 	display: flex;
-	
+
 }
 .ChatInputBox button{
 	flex: 0.25;

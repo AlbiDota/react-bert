@@ -8,6 +8,7 @@ import About from './Pages/About';
 import SpinnerPage from './Pages/SpinnerPage.jsx';
 import ChatPage from "./Pages/ChatPage.jsx";
 
+//npm install firebase react-firebase-hooks
 
 function App() {
   return (

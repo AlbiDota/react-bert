@@ -46,7 +46,7 @@ export default function ChatBox() {
             </div>
             <div className="ChatInputBox">
                 {/*SKRIVEFELT, ENTERKNAPP YE?*/}
-                <input value={input} onChange={(e) => setInput(e.target.value)}
+                <input value={input} required onChange={(e) => setInput(e.target.value)} 
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}/> {/* Kan trykke enter i chatten*/}
 
                 <button onClick={sendMessage}>Send</button>
