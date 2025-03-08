@@ -3,14 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bad-words": "^4.0.0",
     "cra-template": "1.2.0",
-    "firebase": "^11.4.0",
-    "firebase-admin": "^13.2.0",
-    "firebase-functions": "^6.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^7.1.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^4.2.4"
