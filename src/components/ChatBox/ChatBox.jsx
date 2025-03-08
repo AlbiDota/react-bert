@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+
+
+
 let adjektiv = [
      "", "Iskald", "Lunken", "Kjølig", "Glovarm", "Romtemperert",
     "Heslig", "Grumsete","Frisk"];
@@ -20,8 +23,6 @@ export default function ChatBox() {
     const [input, setInput] = useState("");
     const [randName] = useState(tilfeldigNavn());
 
-    
-    
     const sendMessage = () => {
         const newMessage = {
             id: Date.now(),
