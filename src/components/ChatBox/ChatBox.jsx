@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { firestore, auth, collection, addDoc, serverTimestamp, query, orderBy, limit } from "../../firebase";
 
 let adjektiv = [
      "", "Iskald", "Lunken", "Kjølig", "Glovarm", "Romtemperert",
@@ -16,21 +18,44 @@ function tilfeldigNavn() {
 }
 
 export default function ChatBox() { 
-    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const [randName] = useState(tilfeldigNavn());
 
+    const dummy = useRef();
+    const messagesRef = collection(firestore,'messages');
+
+    //mekke query med order by
+    const messagesQuery = query(messagesRef, orderBy('createdAt'), limit(25));
     
-    
-    const sendMessage = () => {
+    const [messages] = useCollectionData(messagesQuery, {idfield: "id"});
+
+    const [formValue, setFormValue] = useState(""); //reset form value
+
+    const sendMessage = async (e) => {
+        e.preventDefault(); //gjør atn ikke refresher seg når man submitter "form"
+
+        const { uid } = auth.currentUser;
+
+        await addDoc(messagesRef, {
+            text: formValue,
+            createdAt: serverTimestamp(),
+            uid,
+            randName
+        })
+
+        setFormValue("");
+        //vi kaller denna seinere for å scrolle når en ny mld kommer
+        dummy.current.scrollIntoView({behavior: "smooth" });//vi kaller denna seinere for å scrolle når en ny mld kommer
+        setInput(""); //reset input etter sendt mld
+
         const newMessage = {
-            uid: Date.now(),
+            uid: auth.currentUser.uid,
             text: input,
             sender: randName,
             timestamp: new Date().toLocaleDateString()
         };
         //oppdaterer messages sin state ved å lage en array som har alle messages.
-        setMessages([...messages, newMessage]); 
+        //setMessages([...messages, newMessage]); 
         setInput(""); //"resetter" skrivefeltet etter meldingen er sendt og lagret 
 
     }
@@ -40,19 +65,35 @@ export default function ChatBox() {
         <div className="ChatBox-wrapper">
             <div className="ChatOutputBox">
                 {/*KODE FOR OUTPUTBOKSEN MED CHATMELDINGENE HER*/}
-                {Array.isArray(messages) && messages.map((msg) => (
-                    <div key={msg.id}> <strong>{msg.sender}</strong> [{msg.timestamp}]: {msg.text} </div>
-                ))}
+                {messages && messages.map((msg) => (<ChatMessage key={msg.id} message={msg}/>))} 
+                    <span ref={dummy}/>{/*autoscrollern*/}
             </div>
-            <div className="ChatInputBox">
+            <form onSubmit={sendMessage} className="ChatInputBox">
                 {/*SKRIVEFELT, ENTERKNAPP YE?*/}
-                <input value={input} required onChange={(e) => setInput(e.target.value)} 
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}/> {/* Kan trykke enter i chatten*/}
+                <input value={formValue} onChange={(e) => setFormValue(e.target.value)} 
+                onKeyDown={(e) => e.key === "Enter" && sendMessage(e)}
+                
+            /> {/* Kan trykke enter i chatten*/}
 
-                <button onClick={sendMessage}>Send</button>
-            </div>
+                <button type="submit" onClick={sendMessage} disabled={!formValue} >Send</button>
+            </form>
         </div><div style={{flex:0.3}}/>
     </>
     );
+
+    function ChatMessage(props) {
+        const {text, uid, randName} = props.message;
+
+        //meldingen som vises er entn sendt eller motatt
+        const messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
+
+        return (<>
+            <div className={`message ${messageClass}`}>
+                <strong>{props.message.randName}</strong>
+                [{props.message.timestamp}]:
+                <p>{text}</p>
+            </div>
+        </>)
+    }
 }
 
