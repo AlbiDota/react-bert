@@ -1,13 +1,15 @@
 import ChatBox from '../components/ChatBox/ChatBox';
 import '../stylesheet/App.css';
+import ChatRoom from '../components/ChatRoom';
+import SignIn from '../components/userAuthComponent/SignIn';
 
-const [user] = useAuthState(auth);
 
 const ChatPage = () => {
     return (
         <div className="App">
-            {user ? <ChatRoom/> : <SignIn/> }
-            
+            <section>
+                {user ? <ChatRoom/> : <SignIn/> }
+            </section>
         </div>
     );
 };
