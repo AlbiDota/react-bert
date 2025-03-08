@@ -10,7 +10,7 @@ const ChatOrLoginPage = () => {
     const [user] = useAuthState(auth);
     return (
         <div className="App">
-            {user ? <ChatPage /> : <SignIn />}
+            {user ? <ChatBox /> : <SignIn />}
             
         </div>
     );

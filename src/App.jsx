@@ -46,10 +46,10 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/HangBertPage" element={<HangBertPage/>} />
         <Route path="/SpinnerPage" element={<SpinnerPage/>} />
-        <Route path="/ChatOrLoginPage" element={<ChatOrLoginPage/>} />
+        <Route path="/ChatPage" element={<ChatPage/>} />
         <Route path="/About" element={<About/>} />
 
-        <Route path="/ChatPage" element={<ChatPage/>} />
+        
         
       </Route>
     </Routes>
