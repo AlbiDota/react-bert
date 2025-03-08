@@ -65,17 +65,36 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 /* ---- End of reset ---- */
 
 .App-logo {
+	margin-top:2rem;
 	height: 40vmin;
 	width: 40vmin;
 	align-self: center;
 	pointer-events: none;
-	border-radius: 25%;
+	border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
-	animation: App-logo-spin infinite 1.8s linear;
+	animation: App-logo-spin infinite 6s linear;
 	}
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+
+}
+
+@keyframes App-logo-spin {
+	0% {transform: rotate(0deg);}
+	50% {transform: rotate(360deg);}
+	100% {transform: rotate(0deg);}
+
+
 }
 
 .kontaktDiv {
@@ -103,15 +122,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	font-size: 111%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-  
-}
+
 
 /* ---- Footer ---- */
 .footer {
@@ -187,7 +198,13 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	padding: 1rem;
 	text-align: center;
 	border-right: 0.2rem solid #E6E6FA;
+	max-width: 10rem;
+}
 
+.navBar li:first-child {
+	border-left: none;
+	margin-left: 1.2rem;
+	
 }
 
 .navBar li:last-child { /*siste i lista ska ikke ha "border" til høyre*/
@@ -207,6 +224,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	width: 50vw;
 	border: 0.1rem solid black;
 	border-radius: 0.4rem;
+	font-size: 2vmin;
 
 }
 

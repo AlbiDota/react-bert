@@ -15,7 +15,7 @@ const NavBar = () => {
           <NavLink to="/SpinnerPage">Fidget Spinner</NavLink>
         </li>
         <li>
-          <NavLink to="/ChatPage">Chat</NavLink>
+          <NavLink to="/ChatOrLoginPage">Chat</NavLink>
         </li>
         <li>
           <NavLink to="/About">About</NavLink>

@@ -24,7 +24,7 @@ export default function ChatBox() {
     
     const sendMessage = () => {
         const newMessage = {
-            id: Date.now(),
+            uid: Date.now(),
             text: input,
             sender: randName,
             timestamp: new Date().toLocaleDateString()
@@ -40,7 +40,7 @@ export default function ChatBox() {
         <div className="ChatBox-wrapper">
             <div className="ChatOutputBox">
                 {/*KODE FOR OUTPUTBOKSEN MED CHATMELDINGENE HER*/}
-                {messages.map((msg) => (
+                {Array.isArray(messages) && messages.map((msg) => (
                     <div key={msg.id}> <strong>{msg.sender}</strong> [{msg.timestamp}]: {msg.text} </div>
                 ))}
             </div>
