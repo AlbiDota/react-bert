@@ -9,7 +9,6 @@
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^7.3.0",
-    "react-scripts": "^3.0.1",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
@@ -38,6 +37,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "react-scripts": "^5.0.1",
+    "webpack": "^5.98.0"
   }
 }
