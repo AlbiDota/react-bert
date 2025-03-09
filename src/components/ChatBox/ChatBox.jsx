@@ -5,12 +5,13 @@ import { firestore, auth, collection, addDoc, serverTimestamp, query, orderBy, l
 
 let adjektiv = [
      "", "Iskald", "Lunken", "Kjølig", "Glovarm", "Romtemperert",
-    "Heslig", "Grumsete","Frisk"];
+    "Heslig", "Grumsete","Frisk", "Flat","Knusktørr","Skibidi",
+    "Tykk","Level99","Level1",];
 
 let beer = [
     "Ringnes","Hansa","Tuborg","Heineken",
     "Guinness","Corona","Carlsberg","Aass",
-    "Grans","Seidel","Dahls"];
+    "Grans","Seidel","Dahls","Gyatt"];
 
 function tilfeldigNavn() {
     let randName = (adjektiv[Math.floor(Math.random() * adjektiv.length)] 
