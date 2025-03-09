@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import React from 'react';
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { firestore, auth, collection, addDoc, serverTimestamp, query, orderBy, limit } from "../../firebase";
 

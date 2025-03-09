@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import KontaktOss from "./KontaktOss";
+import React from 'react';
 const NavBar = () => {
   return (
 
