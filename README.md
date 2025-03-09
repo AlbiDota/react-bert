@@ -2,11 +2,11 @@
 ##  REACTJS PRACTICE 
 ### Having fun and goofing around :DD 
 
-Welcome to **react-bert**! 🎉   
+Welcome to **react-bert**!   
 This is a hobby project where I make some not-so-complicated React components.
 This is all made for fun, and for learning JavaScript, React, Html, CSS and firebase.
 
-🔗 **Live Version:** [react-bert.web.app](https://react-bert.web.app/) (Hosted on **Firebase**)
+**Live Version:** [react-bert.web.app](https://react-bert.web.app/) (Hosted on **Firebase**)
 
 ---
 
