@@ -10,7 +10,7 @@ This is all made for fun, and for learning JavaScript, React, Html, CSS and fire
 
 ---
 
-## 🛠 Want to Run My React App Locally?    
+## Want to Run My React App Locally?    
 
 1️⃣ Clone the repo:  
 ```cmd
@@ -45,7 +45,7 @@ npm start
  
 ---
 
-## 🔗 Connect with Me!  
-👾 **GitHub:** [AlbiDota](https://github.com/AlbiDota)  
+## Connect with Me!  
+**GitHub:** [AlbiDota](https://github.com/AlbiDota)  
 
 ---
