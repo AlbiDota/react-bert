@@ -225,7 +225,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	border: 0.1rem solid black;
 	border-radius: 0.4rem;
 	font-size: 2vmin;
-	background-color: #eec0c8; /*PALERMO PINK https://cssgradient.io/shades-of-pink/*/
+	background-color: #eec0c8; /*PALERMO PINK https://cssgradient.io/shades-of-pink/ */
 }
 
 .ChatOutputBox {
@@ -235,7 +235,9 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	padding: 0.5rem;
 	border: 0.1rem solid black;
 	text-align: start;
-	
+	max-height:auto;
+	display: flex;
+    flex-direction: column;
 }
 
 .ChatOutputBox div {
@@ -250,7 +252,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 }
 
 .sent {
-	/*background-color: #FFC0CB;  PINK https://cssgradient.io/shades-of-pink/ */
+	background: linear-gradient(to right, #eec0c8, #FFC0CB 10%, #eec0c8);  /*PINK #FFC0CB https://cssgradient.io/shades-of-pink/ */
 	
 }
 
