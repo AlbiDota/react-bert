@@ -40,14 +40,15 @@ export default function ChatBox() {
             text: formValue,
             createdAt: serverTimestamp(),
             uid,
-            randName
+            randName,
+            chatTime: new Date().toLocaleTimeString()
         })
 
         setFormValue("");
         //vi kaller denna seinere for å scrolle når en ny mld kommer
         dummy.current.scrollIntoView({behavior: "smooth" });//vi kaller denna seinere for å scrolle når en ny mld kommer
         setInput(""); //reset input etter sendt mld
-
+/*
         const newMessage = {
             uid: auth.currentUser.uid,
             text: input,
@@ -55,7 +56,7 @@ export default function ChatBox() {
             timestamp: new Date().toLocaleDateString()
         };
         //oppdaterer messages sin state ved å lage en array som har alle messages.
-        //setMessages([...messages, newMessage]); 
+        //setMessages([...messages, newMessage]); */
         setInput(""); //"resetter" skrivefeltet etter meldingen er sendt og lagret 
 
     }
@@ -65,6 +66,7 @@ export default function ChatBox() {
         <div className="ChatBox-wrapper">
             <div className="ChatOutputBox">
                 {/*KODE FOR OUTPUTBOKSEN MED CHATMELDINGENE HER*/}
+                
                 {messages && messages.map((msg) => (<ChatMessage key={msg.id} message={msg}/>))} 
                     <span ref={dummy}/>{/*autoscrollern*/}
             </div>
@@ -82,15 +84,16 @@ export default function ChatBox() {
     );
 
     function ChatMessage(props) {
-        const {text, uid, randName} = props.message;
+        const {text, createdAt, uid, randName, chatTime} = props.message;
 
         //meldingen som vises er entn sendt eller motatt
         const messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
 
         return (<>
             <div className={`message ${messageClass}`}>
-                <strong>{props.message.randName}</strong>
-                [{props.message.timestamp}]:
+                <p id="chatTime">[{chatTime}]</p>
+                <strong>{props.message.randName}</strong>:
+                
                 <p>{text}</p>
             </div>
         </>)

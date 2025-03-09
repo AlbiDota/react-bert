@@ -18,9 +18,9 @@ export default function SignIn() {
     }
   
     return (
-      <>
+      <><div style={{flex:0.3}}/>
         <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      </>
+        <div style={{flex:1}}/></>
     )
   
 }
