@@ -33,6 +33,9 @@ jobs:
           npm ci
           npm run build
 
+      - name: Run copy-readme script
+        run: npm run copy-readme
+
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
