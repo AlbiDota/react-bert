@@ -75,7 +75,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
-	animation: App-logo-spin infinite 6s linear;
+	animation: App-logo-spin infinite 15s linear;
 	}
 }
 
