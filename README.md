@@ -35,7 +35,7 @@ or just try:
 ```cmd
 npm install --force
 ```  
-(This might fix things, but also might break the universe. Use wisely.)  
+(Use wisely!)  
 
 4️⃣ Start the app:  
 ```cmd
