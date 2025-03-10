@@ -1,8 +1,9 @@
+import ReadmeComp from '../components/ReadmeComp/ReadmeComp';
 import '../stylesheet/App.css';
 const About = () => {
     return (
         <div className="App">
-            <h1>LOL</h1>
+           <ReadmeComp/>
             
         </div>
     );
