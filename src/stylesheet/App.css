@@ -181,24 +181,28 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	border-bottom: 0.3rem solid #E6E6FA;
 	background-color: #DDA0DD; /*https://cssgradient.io/shades-of-purple/ PLUM*/
 	color: white;
+	float:inline-end;
 }
 
 .navBar-links {
 	list-style-type: none;
 	text-decoration: none;
-
 	display: flex;
 	justify-content: space-between; /* Ensures left and right alignment */
 	align-items: center;
 	width: 100%;
-	}
+	flex-wrap: nowrap;
+	white-space: nowrap; /* gjør at alt holder seg på linja*/
+
+}
 
 .navBar li {
-	display: inline-block; /* Ensures inline placement */
+	display: inline-block; /* kritisk */
 	padding: 1rem;
 	text-align: center;
 	border-right: 0.2rem solid #E6E6FA;
 	max-width: 10rem;
+	flex-shrink: 0; /* GPT sier det kan være kjekt for å hindre for mye krymping. jeg mener den er unødvendig tho? */
 }
 
 .navBar li:first-child {
@@ -206,12 +210,17 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	margin-left: 1.2rem;
 	
 }
-
-.navBar li:last-child { /*siste i lista ska ikke ha "border" til høyre*/
-	border-right: none;
-	margin-left: auto;
-	margin-right: 3rem;
+.navBar-rightside {
+	display:flex;
+	gap:1rem;
+	margin-left:auto;
+	padding-right: 1.5rem;
 }
+
+.navBar-rightside li {
+	border-right: none;
+}
+
 
 /* ---- ENnd of navbar ---- */
 

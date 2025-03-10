@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import KontaktOss from "./KontaktOss";
 import React from 'react';
+import SignOut from "./userAuth/SignOut";
+
 const NavBar = () => {
   return (
 
@@ -20,10 +22,15 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to="/About">About</NavLink>
-        </li>        
-        <li>
-          <KontaktOss/>
         </li>
+        <div className="navBar-rightside">
+            <li>
+            <SignOut/>
+            </li>
+            <li>
+            <KontaktOss/>
+            </li>
+        </div>
       </ul>
     </nav>
   );

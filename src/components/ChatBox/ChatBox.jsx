@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import React from 'react';
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { firestore, auth, collection, addDoc, serverTimestamp, query, orderBy, limit } from "../../firebase";
+import { Filter } from "bad-words";
 
 let adjektiv = [
      "", "Iskald", "Lunken", "Kjølig", "Glovarm", "Romtemperert",
@@ -22,9 +23,10 @@ function tilfeldigNavn() {
 export default function ChatBox() { 
     const [input, setInput] = useState("");
     const [randName] = useState(tilfeldigNavn());
+    const filter = new Filter();
 
     
-    const messagesRef = collection(firestore,'messages');
+    const messagesRef = collection(firestore,"messages");
 
     //mekke query med order by
     // "desc" henter de siste meldingene, men de kommer i feil rekkefølge. .reverse() brukes når de hentes seinere
@@ -46,16 +48,18 @@ export default function ChatBox() {
         if (!formValue.trim()) return; //for å unngå tomme meldinger. 
         //holder ikke å bare disable knappen når "enter" også kan brukes
 
-        const { uid } = auth.currentUser;
-
+        const { uid, displayName, email } = auth.currentUser;
+        const cleanMessage = filter.clean(formValue); //bruker bad-words filter på input
         setFormValue(""); //flytta resetten til før addDoc, så ikke teksten "lingerer" i boksen
 
         await addDoc(messagesRef, {
-            text: formValue,
+            text: cleanMessage, //sender den filtrerte meldingen for å unngå stygge ord
             createdAt: serverTimestamp(),
             uid,
             randName,
-            chatTime: new Date().toLocaleTimeString()
+            displayName,
+            email,
+            chatTime: new Date().toISOString() //"YYYY-MM-DDTHH:mm:ss.sssZ" format som gjøres om i ChatMessage()
         })
 
         
@@ -102,10 +106,18 @@ export default function ChatBox() {
 
         //meldingen som vises er entn sendt eller motatt
         const messageClass = uid === auth.currentUser.uid ? "sent" : "recieved";
+        //justerer formatet til "chatTime"
+        const formattedTime = new Date(chatTime).toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+        });
+
 
         return (<>
             <div className={`message ${messageClass}`}>
-                <p id="chatTime">[{chatTime}]</p>
+                <p id="chatTime">[{formattedTime}]</p>
                 <strong>{props.message.randName}</strong>:
                 
                 <p>{text}</p>
