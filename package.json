@@ -14,8 +14,9 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run copy-readme && react-scripts start",
     "build": "cross-env NODE_OPTIONS=$(node -v | grep -q '^v18' && echo '--openssl-legacy-provider') ESLINT_NO_DEV_ERRORS=false react-scripts build",
+    "copy-readme": "copyfiles README.md public/README.md",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,7 +40,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
+    "raw-loader": "^4.0.2",
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.5",
     "webpack": "^5.98.0"

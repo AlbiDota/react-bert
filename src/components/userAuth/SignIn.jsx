@@ -14,6 +14,7 @@ export default function SignIn() {
         })
         .catch((error) => {
             console.log("ERROR DURING SIGN-IN",error);
+            console.log("Firebase API Key:", process.env.REACT_APP_FIREBASE_API_KEY);
         })
     }
   

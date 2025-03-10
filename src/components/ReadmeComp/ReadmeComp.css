@@ -1,0 +1,18 @@
+.readmeWrapper {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.readmeWrapper h1 { font-size: 2.5rem; color: #0077cc; text-align: center; }
+.readmeWrapper h2, h3, p, li { margin-bottom: 10px; }
+.readmeWrapper a { color: #0077cc; text-decoration: none; }
+.readmeWrapper a:hover { text-decoration: underline; }
+.readmeWrapper pre, code { background: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace; }
+.readmeWrapper blockquote { background: #f9f9f9; border-left: 4px solid #0077cc; padding: 10px; font-style: italic; }
+.readmeWrapper hr { border: 1px solid #ccc; margin: 20px 0; }

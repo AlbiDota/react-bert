@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import bilde from './spinner.png';
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { firestore, auth, collection, addDoc, serverTimestamp, query, orderBy, limit } from "../../firebase";
+import { firestore, auth, collection } from "../../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 
@@ -27,7 +26,7 @@ const BildeFidgetToy = () => {
         });
         setTotalClicks(totaltAntKlikk); // oppdaterer totalClicks sin state
     }
-    
+
 
     const fetchUserClicks = async () => {
         if (!user) return; //sånn at den stopper der hvis du ikke er logga inn.
@@ -46,6 +45,10 @@ const BildeFidgetToy = () => {
     //Når vi trykker knappen, ska vi sette "spinner" til true
     const handleClick = async ()=>{
         settSpinner(true);
+        
+        // forbedret påå denna måten for å ikke ha så svær latency mellom klikk og oppdatering på sida
+        setTotalClicks((prev) => prev + 1);
+        if (user) setUserClicks((prev) => prev + 1);
 
         //database stuff igjen
         const userID = user ? user.uid : "anonym"; //logget inn? da tar vi brukerIDen, ellers bruker vi "anonym"
@@ -71,8 +74,9 @@ const BildeFidgetToy = () => {
             })
         }
 
-        fetchTotalClicks(); //oppdaterer totalClicks
-        fetchUserClicks(); // og userClicks på displayet
+        //fetchTotalClicks(); //oppdaterer totalClicks
+        //fetchUserClicks(); // og userClicks på displayet
+        //viste seg å skape for mye latency mellom klikk og visuell oppdatering
 
         //slutt å spinn
         setTimeout(()=>{

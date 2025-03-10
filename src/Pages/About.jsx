@@ -3,8 +3,9 @@ import '../stylesheet/App.css';
 const About = () => {
     return (
         <div className="App">
-           <ReadmeComp/>
-            
+            <div className='readmeWrapper'>
+                <ReadmeComp/>
+            </div>
         </div>
     );
 };
