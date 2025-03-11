@@ -201,7 +201,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	padding: 1rem;
 	text-align: center;
 	border-right: 0.2rem solid #E6E6FA;
-	max-width: 10rem;
+	/*max-width: 10rem;*/
 	flex-shrink: 0; /* GPT sier det kan være kjekt for å hindre for mye krymping. jeg mener den er unødvendig tho? */
 }
 
