@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ✅ Create .env file properly
+      #  Create .env file properly
       - name: Create .env.local file
         run: |
           touch .env.local
@@ -27,11 +27,11 @@ jobs:
           echo "REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}" >> .env.local
           echo "REACT_APP_FIREBASE_MEASUREMENT_ID=${{ secrets.FIREBASE_MEASUREMENT_ID }}" >> .env.local
 
-      # ✅ Debug: Ensure env variables are loaded correctly
+      #  Debug: Ensure env variables are loaded correctly
       - name: Debug environment variables
         run: cat .env.local
 
-      # ✅ Install dependencies & build
+      # Install dependencies & build
       - name: Install dependencies and build
         env:
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -45,11 +45,11 @@ jobs:
           npm ci
           npm run build
 
-      # ✅ Copy README file (if necessary)
+      #  Copy README file (if necessary)
       - name: Run copy-readme script
         run: npm run copy-readme
 
-      # ✅ Deploy to Firebase Hosting
+      # Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:

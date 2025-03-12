@@ -1,7 +1,11 @@
 //HangBert.java, men i javascript
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./HangBert.css";
+
+import { firestore, auth, collection } from "../../firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 
 //ordliste som inneholder ordene som skal gjettes
 let ordliste = [
@@ -55,6 +59,25 @@ export default function HangBert() {
     const [showPopupW, setShowPopupW] = useState(false); //viser game won png og lyd
     const [gameWon, setGameWon] = useState(false); //holder styr på om spellet er vunnet
 
+    //database stuff
+    const [user] = useAuthState(auth);
+
+    const [ antWins, setAntWins ] = useState(0);
+
+    const hangBertRef = collection(firestore, "hangbert");
+
+    const fetchUserWins = async () => {
+        if (!user) return;
+        const userRef = doc(hangBertRef, user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+            setAntWins(userDoc.data().hangbertWins);
+        } else {
+            setAntWins(0); 
+        }
+    };
+
     //funksjon for å vise game over png og lyd i åtte sek
     const GameOver = () => {
         setShowPopupL(true);
@@ -66,13 +89,36 @@ export default function HangBert() {
         setTimeout(() => restart(), 9000);
     }
 
-    const GameWon = () => {
+    const GameWon = async () => {
         setShowPopupW(true);
         setTimeout(() => {
             const winAudio = new Audio("/HangBertAssets/audio/winAudio.mp3")
             winAudio.volume = 0.3;
             winAudio.play();
         }, 345);
+
+        const userRef = doc(hangBertRef, user.uid);
+        const userDoc = await getDoc(userRef);
+
+        const userID = user ? user.uid : "anonym"; //logget inn? da tar vi brukerIDen, ellers bruker vi "anonym"
+        const displayName = user ? user.displayName || "Unknown User" : "noName";
+        const email = user ? user.email || "No email" : "noEmail";
+
+        if (userDoc.exists()) {
+            //hvis brukern finnes i systemet, oppdaterer vi hangbertwins med pluss en
+            await updateDoc(userRef, {
+                hangbertWins: userDoc.data().hangbertWins + 1,
+            });
+            
+        } else { //hvis brukern ikke finnes, må vi lage en dem i databasen
+            await setDoc(userRef, {
+                uid: userID,
+                displayName: displayName,
+                email: email,
+                hangbertWins: 1, //siden vi legger dem til etter første win
+            })
+        }
+
         setTimeout(() => setShowPopupW(false),5000);
         setTimeout(() => restart(), 6000);
     }
@@ -122,22 +168,33 @@ export default function HangBert() {
         setGameWon(false);
         setShowPopupL(false);
         setShowPopupW(false);
+        fetchUserWins()
     };
+
+    useEffect(() => {
+        if (user) { fetchUserWins() }
+        
+    },[user]);
+    
 
     return (
         <div >
-            <restart/><br/><br/><br/>
+            <restart/><br/><br/>
             <h1>Velkommen til HangBert!</h1>
             <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2><br/>
-            <h3>{antallFeil} / 6</h3>
-            {showPopupL && (
-                <h2 >Ordet var {ord0}</h2>
-            )}
-            <div className="HangBertContainer">
-            {/* bilde for hangmanen og bokstavene*/}
-            <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem"}}/>
-            <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
-
+            <div className="hangbert-venstreside">
+                {user ? <h2>Antall Wins: {antWins}</h2> : <></>}
+                <h3>Forsøk {antallFeil} / 6</h3>
+                {showPopupL && (
+                    <h2 >Ordet var {ord0}</h2>
+                )}
+            </div>
+            <div className="hangbert-høyreside">
+                <div className="HangBertContainer">
+                {/* bilde for hangmanen og bokstavene*/}
+                <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem"}}/>
+                <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
+            </div>
             <div className="HangBertFlex"/>
             {/*'tastaturet'*/}
             <div className="grid-container">
