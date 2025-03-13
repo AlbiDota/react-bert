@@ -38,7 +38,7 @@ const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som pa
                     ) : tidligereGjett.includes(bokstav) ? (
                         <img key={index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
                     ) : (
-                        <img key={index} src="/HangBertAssets/alfabet/0_strek.png" alt="_" />
+                        <img key={index} src="/HangBertAssets/alfabet/0_strek.png" alt="_" style={{marginTop :"2rem"}} />
                     )
                 )}
         </div>
@@ -175,47 +175,62 @@ export default function HangBert() {
         if (user) { fetchUserWins() }
         
     },[user]);
-    
+
+    //setter på musikken etter litt tid
+    /* Trenger at den kan loopes, og at den kan avbrytes av mute knapp og andre lyder ved game won og lost
+    useEffect(() => {
+        setTimeout(() => {
+            const winAudio = new Audio("/HangBertAssets/audio/suspense.mp3")
+            winAudio.volume = 0.3;
+            winAudio.play();
+        }, 9000);
+    },[]);
+    */
 
     return (
         <div >
             <restart/><br/><br/>
             <h1>Velkommen til HangBert!</h1>
             <h2>Spillet er 'Hangman' og temaet er 'øl i butikk'</h2><br/>
-            <div className="hangbert-venstreside">
                 {user ? <h2>Antall Wins: {antWins}</h2> : <></>}
                 <h3>Forsøk {antallFeil} / 6</h3>
                 {showPopupL && (
                     <h2 >Ordet var {ord0}</h2>
                 )}
-            </div>
-            <div className="hangbert-høyreside">
-                <div className="HangBertContainer">
-                {/* bilde for hangmanen og bokstavene*/}
-                <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem"}}/>
-                <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
-            </div>
-            <div className="HangBertFlex"/>
+            
+            
+            <div className="HangBertContainer">
+                {/* bilde for hangmanen og bokstavene*/}    
+                    <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem", backgroundColor:"lightgoldenrodyellow", borderRadius:"5%"}}/>
+                    <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
+                </div>
+                
             {/*'tastaturet'*/}
             <div className="grid-container">
                     {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((bokstav) => (
                         <img key={bokstav} 
                         src={`/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`}
-                        alt={bokstav}
+                        alt={bokstav} 
                         onClick={() => {if (!(tidligereGjett.includes(bokstav) || antallFeil === 6 || gameWon)) {
                             handleGuess(bokstav);}
                         }}
                         
                         style= {{
-                            margin: "0.5rem",width:"2rem",
+                            margin: "0.7rem 0 0.2rem 0",width:"3rem",
                             opacity: tidligereGjett.includes(bokstav) || gameWon || antallFeil === 6? 0.5 : 1,
-                            cursor:tidligereGjett.includes(bokstav) || gameWon ? "not-allowed" : "pointer"
+                            cursor: tidligereGjett.includes(bokstav) || gameWon ? "not-allowed" : "pointer",
+                            
+                            backgroundColor: tidligereGjett.includes(bokstav) && ord0.includes(bokstav) 
+                                ? "lightblue" 
+                                : tidligereGjett.includes(bokstav) && !ord0.includes(bokstav)
+                                ? "lightcoral" 
+                                : "transparent"
                         }}
-                        id = {bokstav}
+                        id = {bokstav} className="bokstav"
                         />
                     ))}
                 </div>
-                </div>
+                
            <div className="HangBertFlex"/><br/><br/>
            <button onClick={restart}>Restart</button>
            <br/><br/><br/>

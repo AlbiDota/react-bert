@@ -4,21 +4,53 @@
     align-items: center;
 }
 
-.grid-container { 
-    display: grid;  
-    flex:1;
-    grid-template-columns: repeat(9, 1fr); /* ni kolonner */
-    gap: 0.6rem; /* mellomrom mellom "tastene" */
-    padding-left: 14rem; /* mellomrom mellom "tastaturet" og ytterkant av siden */
-    padding-right: 14rem; 
-    padding-top: 4rem;
-    padding-bottom: 2rem;
+.sidecontainer {
+
 }
 
-.spillBokstaver img{
-    width: 8rem;
+.hangbert-venstreside {
+    
+    
+}
+
+.hangbert-høyreside {
+    
+    
+}
+
+
+.grid-container { 
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;    /* Horisontal sentrering */
+    align-items: center;       /* Vertikal sentrering */
+    margin: 0 auto; /* sentrering av grid */
+    width: 100%; /* 100% av forelderen */
+    max-width: 600px;
+    grid-template-columns: repeat(9, 1fr); /* ni kolonner */
+    gap: 0.6rem; /* mellomrom mellom "tastene" */
+    padding-left: 30vw; /* mellomrom mellom "tastaturet" og ytterkant av siden */
+    padding-right: 30vw; 
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    
+}
+.bokstav {
+    padding:0.2rem;
+    border-radius: 37%;
+    height:auto;
+}
+
+.bokstav :hover {
+    background-color: lightblue;
+}
+
+.spillBokstaver img {
+    margin-top: 1rem;
+    width: 5rem;
     height: auto;
-    margin: 1rem, auto, 1rem, auto;
+    margin: 1rem auto 0 auto;
+    
 }
 
 
