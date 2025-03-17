@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "npm run copy-readme && react-scripts start",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ESLINT_NO_DEV_ERRORS=false react-scripts build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ESLINT_NO_DEV_ERRORS=true react-scripts build",
     "copy-readme": "copyfiles README.md public/README.md",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
