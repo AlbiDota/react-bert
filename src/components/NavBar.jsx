@@ -24,6 +24,9 @@ const NavBar = () => {
           <NavLink to="/ChatPage">Chat</NavLink>
         </li>
         <li>
+          <NavLink to="/Leaderboards">Leaderboards</NavLink>
+        </li>
+        <li>
           <NavLink to="/About">About</NavLink>
         </li>
         <div className="navBar-rightside">

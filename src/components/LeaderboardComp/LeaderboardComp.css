@@ -1,0 +1,50 @@
+.leaderboard-wrapper {
+    margin:auto;
+    font-size: 1.8rem;
+    flex-direction:column;
+    height:70vh;
+    width:50vw;
+    background-color: #eec0c8;
+    border: 0.3rem solid #E6E6FA;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.leaderboard-header {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding:0.5rem;
+    border-bottom: 0.3rem solid #E6E6FA;
+    background-color: #eec0c8; /*PALERMO PINK https://cssgradient.io/shades-of-pink/ */
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.leaderboard-wrapper h1 {
+    border : 0.1rem solid #E6E6FA;
+}
+
+.leaderboard-content {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.leaderboard-content div {
+    
+    
+}
+
+
+.gamer {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+    border-bottom: 0.1rem solid #E6E6FA;
+
+}
+
+.gamer.self { /*For å skille på den som er logga inn og de andre*/
+     font-weight: bold;
+}

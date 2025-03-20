@@ -58,6 +58,7 @@ export default function HangBert() {
     const [showPopupL, setShowPopupL] = useState(false); //viser game over png og lyd
     const [showPopupW, setShowPopupW] = useState(false); //viser game won png og lyd
     const [gameWon, setGameWon] = useState(false); //holder styr på om spellet er vunnet
+    const [totalWins, setTotalWins] = useState(0); //holder styr på totalt antall wins i databasen
 
     //database stuff
     const [user] = useAuthState(auth);
@@ -78,6 +79,16 @@ export default function HangBert() {
         }
     };
 
+    const fetchTotalWins = async () => {
+        const innhenting = await getDocs(hangBertRef);
+        let totaltAntWins = 0;
+
+        innhenting.forEach((doc) => {
+            totaltAntWins += doc.data().hangbertWins || 0; //summerer alle rader i kolonnen hangbertWins
+        });
+        setTotalWins(totaltAntWins); // oppdaterer totalWins sin state
+    }
+
     //funksjon for å vise game over png og lyd i åtte sek
     const GameOver = () => {
         setShowPopupL(true);
@@ -97,14 +108,16 @@ export default function HangBert() {
             winAudio.play();
         }, 345);
 
-        const userRef = doc(hangBertRef, user.uid);
-        const userDoc = await getDoc(userRef);
-
+        
+        
         const userID = user ? user.uid : "anonym"; //logget inn? da tar vi brukerIDen, ellers bruker vi "anonym"
         const displayName = user ? user.displayName || "Unknown User" : "noName";
         const email = user ? user.email || "No email" : "noEmail";
 
-        if (userDoc.exists()) {
+        const userRef = doc(hangBertRef, userID);
+        const userDoc = await getDoc(userRef);
+
+        try {if (userDoc.exists()) {
             //hvis brukern finnes i systemet, oppdaterer vi hangbertwins med pluss en
             await updateDoc(userRef, {
                 hangbertWins: userDoc.data().hangbertWins + 1,
@@ -117,6 +130,8 @@ export default function HangBert() {
                 email: email,
                 hangbertWins: 1, //siden vi legger dem til etter første win
             })
+        }} catch (error) {
+            console.error("Error adding to database: ", error);
         }
 
         setTimeout(() => setShowPopupW(false),5000);
@@ -172,6 +187,7 @@ export default function HangBert() {
     };
 
     useEffect(() => {
+        fetchTotalWins();
         if (user) { fetchUserWins() }
         
     },[user]);
@@ -233,7 +249,7 @@ export default function HangBert() {
                 
            <div className="HangBertFlex"/><br/><br/>
            <button onClick={restart}>Restart</button>
-           <br/><br/><br/>
+           <br/><br/><br/><h2>Totalt antall wins: {totalWins}</h2><br/>
 
            {/*game over png som ska dukke opp når 'GameOver()' blir kalt*/}
            {showPopupL && (
