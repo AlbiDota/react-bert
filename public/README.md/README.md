@@ -14,17 +14,17 @@ This is all made for fun, and for learning JavaScript, React, Html, CSS and fire
 
 ## Want to Run My React App Locally?    
 
-1️⃣ Clone the repo:  
+Clone the repo:  
 ```cmd
 git clone https://github.com/AlbiDota/react-bert
 ```  
 
-2️⃣ Navigate into the project:  
+Navigate into the project:  
 ```cmd
 cd react-bert
 ```  
 
-3️⃣ Install dependencies:  
+Install dependencies:  
 ```cmd
 npm install
 ```  
@@ -39,11 +39,39 @@ npm install --force
 ```  
 (Use wisely!)  
 
-4️⃣ Start the app:  
+Start the app:  
 ```cmd
 npm start
 ```  
 
+---
+
+├───.firebase/
+├───.github
+│   └───workflows
+├───build/
+├───node_modules/
+├───public
+│   ├───HangBertAssets
+│   │   ├───alfabet
+│   │   ├───audio
+│   │   └───hangman
+│   └───README.md
+└───src
+    ├───components
+    │   ├───ChatBox
+    │   ├───FidgetMappe
+    │   ├───HangBertJS
+    │   │   ├───alfabet
+    │   │   └───hangman
+    │   ├───LeaderboardComp
+    │   ├───ReadmeComp
+    │   ├───RockPaperScissor
+    │   └───userAuth
+    ├───dormant
+    ├───Layout
+    ├───Pages
+    └───stylesheet
  
 ---
 

@@ -9,6 +9,7 @@ import SpinnerPage from './Pages/SpinnerPage.jsx';
 import ChatPage from "./Pages/ChatPage.jsx";
 import ChatOrLoginPage from "./Pages/ChatOrLoginPage.jsx";
 import RockPaperScissorPage from "./Pages/RockPaperScissorPage.jsx";
+import BlackjackPage from "./Pages/BlackjackPage.jsx";
 import Leaderboards from "./Pages/Leaderboards.jsx";
 
 //npm install firebase react-firebase-hooks
@@ -46,11 +47,12 @@ function App() {
     <Routes>
       <Route element={<MainLayout/>}>
         <Route path="/" element={<Home/>} />
-        <Route path="/HangBertPage" element={<HangBertPage/>} />
-        <Route path="/SpinnerPage" element={<SpinnerPage/>} />
-        <Route path="/ChatPage" element={<ChatPage/>} />
+        <Route path="/HangBert" element={<HangBertPage/>} />
+        <Route path="/Spinner" element={<SpinnerPage/>} />
+        <Route path="/Chat" element={<ChatPage/>} />
         <Route path="/About" element={<About/>} />
-        <Route path="/RockPaperScissorPage" element={<RockPaperScissorPage/>} />
+        <Route path="/RockPaperScissors" element={<RockPaperScissorPage/>} />
+        <Route path="/Blackjack" element={<BlackjackPage/>} />
         <Route path="/Leaderboards" element={<Leaderboards/>} />
         
         

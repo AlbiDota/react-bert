@@ -12,16 +12,16 @@ const NavBar = () => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/HangBertPage">HangBert</NavLink>
+          <NavLink to="/HangBert">HangBert</NavLink>
         </li>
         <li>
-          <NavLink to="/SpinnerPage">Fidget Spinner</NavLink>
+          <NavLink to="/Spinner">Fidget Spinner</NavLink>
         </li>
         <li>
-          <NavLink to="/RockPaperScissorPage">RockPaperScissors</NavLink>
+          <NavLink to="/RockPaperScissors">RockPaperScissors</NavLink>
         </li>
         <li>
-          <NavLink to="/ChatPage">Chat</NavLink>
+          <NavLink to="/Chat">Chat</NavLink>
         </li>
         <li>
           <NavLink to="/Leaderboards">Leaderboards</NavLink>

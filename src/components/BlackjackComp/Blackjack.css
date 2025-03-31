@@ -1,0 +1,21 @@
+.hand {
+    display:flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 10rem 3rem 10rem 3rem;
+}
+
+.card {
+    min-width: 8rem;
+    height: 12rem;
+    background-color: whitesmoke;
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    box-shadow: 0.2rem 0.2rem 1rem
+
+}

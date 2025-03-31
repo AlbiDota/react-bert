@@ -27,7 +27,7 @@ function tilfeldigOrd() {
 //vi prøver å få bytta ut bokstavene i ord0 med min "custom font"
 const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som parameter
     const getBokstavPNG = (bokstav) => { //setter inn bokstav som parameter
-        return bokstav === "_" ? "/HangBertAssets/alfabet/0_strek.png" : `/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`;    
+        return bokstav === "_" ? "/Assets/HangBertAssets/alfabet/0_strek.png" : `/Assets/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`;    
     };
 
     return (
@@ -38,7 +38,7 @@ const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som pa
                     ) : tidligereGjett.includes(bokstav) ? (
                         <img key={index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
                     ) : (
-                        <img key={index} src="/HangBertAssets/alfabet/0_strek.png" alt="_" style={{marginTop :"2rem"}} />
+                        <img key={index} src="/Assets/HangBertAssets/alfabet/0_strek.png" alt="_" style={{marginTop :"2rem"}} />
                     )
                 )}
         </div>
@@ -93,7 +93,7 @@ export default function HangBert() {
     const GameOver = () => {
         setShowPopupL(true);
         setTimeout(() => {
-            const lossAudio = new Audio("/HangBertAssets/audio/lossAudio.mp3");
+            const lossAudio = new Audio("/Assets/HangBertAssets/audio/lossAudio.mp3");
             lossAudio.play();
         }, 123);
         setTimeout(() => setShowPopupL(false), 8000);
@@ -103,7 +103,7 @@ export default function HangBert() {
     const GameWon = async () => {
         setShowPopupW(true);
         setTimeout(() => {
-            const winAudio = new Audio("/HangBertAssets/audio/winAudio.mp3")
+            const winAudio = new Audio("/Assets/HangBertAssets/audio/winAudio.mp3")
             winAudio.volume = 0.3;
             winAudio.play();
         }, 345);
@@ -149,7 +149,7 @@ export default function HangBert() {
         {/*telling og lyd for feil bokstav*/}
         if (!ord0.includes(bokstav)) { //hvis ord0 ikke inneholder bokstav
             setAntallFeil((prev) => prev + 1); //øker antall feil med 1
-            const wrongAudio = new Audio("/HangBertAssets/audio/wrongAudio.mp3"); //(Math.random() * (1 - 0.1) + 0.1);
+            const wrongAudio = new Audio("/Assets/HangBertAssets/audio/wrongAudio.mp3"); //(Math.random() * (1 - 0.1) + 0.1);
             wrongAudio.volume = 0.15; //setter volum til 15% den var jævla høy jesus
             wrongAudio.playbackRate = (Math.random() * (2.4 - 0.3) + 0.6);
             wrongAudio.play();
@@ -164,7 +164,7 @@ export default function HangBert() {
                 b === " " || [...tidligereGjett, bokstav].includes(b)
             );
 
-            const correctAudio = new Audio("/HangBertAssets/audio/correctAudio.mp3");
+            const correctAudio = new Audio("/Assets/HangBertAssets/audio/correctAudio.mp3");
             correctAudio.volume = 0.1;
             correctAudio.play();
 
@@ -183,7 +183,8 @@ export default function HangBert() {
         setGameWon(false);
         setShowPopupL(false);
         setShowPopupW(false);
-        fetchUserWins()
+        fetchUserWins();
+        fetchTotalWins();
     };
 
     useEffect(() => {
@@ -196,7 +197,7 @@ export default function HangBert() {
     /* Trenger at den kan loopes, og at den kan avbrytes av mute knapp og andre lyder ved game won og lost
     useEffect(() => {
         setTimeout(() => {
-            const winAudio = new Audio("/HangBertAssets/audio/suspense.mp3")
+            const winAudio = new Audio("/Assets/HangBertAssets/audio/suspense.mp3")
             winAudio.volume = 0.3;
             winAudio.play();
         }, 9000);
@@ -217,7 +218,7 @@ export default function HangBert() {
             
             <div className="HangBertContainer">
                 {/* bilde for hangmanen og bokstavene*/}    
-                    <img src={`/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem", backgroundColor:"lightgoldenrodyellow", borderRadius:"5%"}}/>
+                    <img src={`/Assets/HangBertAssets/hangman/${antallFeil}.png`} alt="hangman" style={{width: "30rem", backgroundColor:"lightgoldenrodyellow", borderRadius:"5%"}}/>
                     <BilderSomTekst ord0={ord0} tidligereGjett={tidligereGjett} id="spillTekst"/>
                 </div>
                 
@@ -225,7 +226,7 @@ export default function HangBert() {
             <div className="grid-container">
                     {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((bokstav) => (
                         <img key={bokstav} 
-                        src={`/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`}
+                        src={`/Assets/HangBertAssets/alfabet/${bokstav.toLowerCase()}.png`}
                         alt={bokstav} 
                         onClick={() => {if (!(tidligereGjett.includes(bokstav) || antallFeil === 6 || gameWon)) {
                             handleGuess(bokstav);}
@@ -254,14 +255,14 @@ export default function HangBert() {
            {/*game over png som ska dukke opp når 'GameOver()' blir kalt*/}
            {showPopupL && (
                 <div className="popupL">
-                    <img src="/HangBertAssets/gameOver.png" className="gameOverPic" alt="game over"/> 
+                    <img src="/Assets/HangBertAssets/gameOver.png" className="gameOverPic" alt="game over"/> 
                 </div>
            )}
 
            {/*game won png som ska dukke opp når 'GameWon()' blir kalt*/}
            {showPopupW && (
                 <div className="popupW">
-                    <img src="/HangBertAssets/gameWon.png" className="gameWonPic" alt="game won"/>
+                    <img src="/Assets/HangBertAssets/gameWon.png" className="gameWonPic" alt="game won"/>
                 </div>
            )}
         </div>

@@ -6,6 +6,7 @@
     width:50vw;
     background-color: #eec0c8;
     border: 0.3rem solid #E6E6FA;
+    border-radius: 0.4rem;
     overflow-x: hidden;
     overflow-y: auto;
 }

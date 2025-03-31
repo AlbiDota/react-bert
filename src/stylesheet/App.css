@@ -100,7 +100,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 .kontaktDiv {
 	display:inline-block;
 	position:relative;
-
+	
 }
 
 .open-button{
@@ -117,6 +117,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	margin-top:3rem; /*mellomrom mellom knappen og boksen (eller teksten idk)*/
 	padding:0.5rem; /*mellomrom mellom tekst og boks innvendig*/
 	word-wrap: break-word; 
+	background-color: #eec0c8;
 }
 .kontaktInfo a{
 	font-size: 111%;
@@ -139,13 +140,16 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 
 #footerLeft {
 	float: left;
-	margin: auto -999px auto auto;
+	margin: auto -999rem auto auto;
 	padding: 0;
 	text-align: start;
+	margin-left: 1.2rem;
 }
 
 #footerMid {
 	text-align:center;
+	align-items: center;
+	justify-content: center;
 }
 
 .back-to-top {
@@ -231,7 +235,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	flex-direction: column;
 	height: 70vh;
 	width: 50vw;
-	border: 0.1rem solid black;
+	border:0.3rem solid #E6E6FA;
 	border-radius: 0.4rem;
 	font-size: 2vmin;
 	background-color: #eec0c8; /*PALERMO PINK https://cssgradient.io/shades-of-pink/ */
@@ -242,7 +246,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	overflow-y: auto;
 	overflow-x:hidden;
 	padding: 0.5rem;
-	border: 0.1rem solid black;
+
 	text-align: start;
 	max-height:auto;
 	display: flex;
@@ -281,6 +285,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 .ChatInputBox input {
 	flex: 0.75;
 	border: 0.1rem solid black;
+	border-radius: 0.3rem;
 	padding: 0.5rem;
 	background-color: #E6E6FA;
 }
