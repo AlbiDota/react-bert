@@ -86,8 +86,8 @@ export default function Blackjack() {
         while (finalDealerHandSum < 17) {
             const nyttKort = trekk();
             finalDealerHand.push(nyttKort);
-
             finalDealerHandSum += getValue(nyttKort,finalDealerHandSum);
+            //vil sette inn delay mellom hvert av korta, men den krasjer :/ ????
         }
         setDealerHand(finalDealerHand);
         setDealerHandSum(finalDealerHandSum);
@@ -98,14 +98,18 @@ export default function Blackjack() {
 
         setTimeout(() => {//DELAY FOR Å LA REACT CATCHE OPP OG SÅNT AS
             //VI LEGGER TIL DEN GJEMTE VERDIEN I hiddenCardValue
-            setDealerHandSum(prevSum => prevSum + hiddenCardValue);
-            //nå har vi muligheten for å animere dramatisk delay og greier
-            if (dealerHandSum < 17) {setTimeout(() => trekkDealer(), 500);}
+            let mellom = dealerHandSum + hiddenCardValue;
+            setDealerHandSum(mellom);
+            
         }, 333);
         //TODO - SAMMENLIKNINGSLOGIKK HER
         //OG KANSKJE FINNE UT AV CASINOMUSIKK OG CSS ANIMASJONER FOR KORTA
 
     }
+    //nå har vi muligheten for å animere dramatisk delay og greier
+    useEffect(() => {
+        if (viseKort && dealerHandSum < 17) {setTimeout(() => trekkDealer(), 500);}
+    }, [dealerHandSum]);
 
     /*useEffect(() => {
         setTimeout(() => {
