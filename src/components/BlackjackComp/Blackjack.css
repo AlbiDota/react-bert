@@ -1,8 +1,31 @@
+.blackjack-wrapper {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    position: relative;
+}
+
+.playerscore {
+    min-height: 2.5rem;
+}
+
 .hand {
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    padding: 10rem 3rem 10rem 3rem;
+    padding: 3rem;
+    min-height: 18rem;
+}
+.dealerHand {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem;
+    min-height: 18rem;
 }
 
 .card {
@@ -18,4 +41,10 @@
     font-weight: bold;
     box-shadow: 0.2rem 0.2rem 1rem
 
+}
+
+.knapper {
+    margin-top: 1rem;
+    display:flex;
+    gap:1rem;
 }

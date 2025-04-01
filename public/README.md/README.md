@@ -5,6 +5,7 @@
 Welcome to **react-bert**!   
 This is a hobby project where I make some not-so-complicated React components.
 This is all made for fun, and for learning JavaScript, React, Html, CSS and firebase.
+I will eventually try to learn and implement some usage of TypeScript as well!
 
 **Github Repository:** [github.com/AlbiDota/react-bert](https://github.com/AlbiDota/react-bert)
 
@@ -45,20 +46,24 @@ npm start
 ```  
 
 ---
-
+```
 ├───.firebase/
 ├───.github
 │   └───workflows
 ├───build/
 ├───node_modules/
 ├───public
-│   ├───HangBertAssets
-│   │   ├───alfabet
-│   │   ├───audio
-│   │   └───hangman
+│   ├───Assets
+│   │   ├───BlackjackAssets
+│   │   ├───HangBertAssets
+│   │   │   ├───alfabet
+│   │   │   ├───audio
+│   │   │   └───hangman
+│   │   └───SSPAssets
 │   └───README.md
 └───src
     ├───components
+    │   ├───BlackjackComp
     │   ├───ChatBox
     │   ├───FidgetMappe
     │   ├───HangBertJS
@@ -72,7 +77,7 @@ npm start
     ├───Layout
     ├───Pages
     └───stylesheet
- 
+```
 ---
 
 ## Connect with Me!  
