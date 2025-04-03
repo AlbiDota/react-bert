@@ -11,7 +11,7 @@ const NavBar = () => {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/HangBert">HangBert</NavLink>
         </li>
         <li>
@@ -19,7 +19,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to="/BlackJack">BlackJack</NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/Chat">Chat</NavLink>
         </li>

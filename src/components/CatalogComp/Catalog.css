@@ -1,0 +1,46 @@
+.catalog-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1.5rem;
+}
+
+.catalog-wrapper img {
+    width: 15vw;
+    height: 15vw;
+    position: relative;
+    z-index: 1;
+}
+
+.catalog-element {
+    border:  0.2rem solid #E6E6FA;
+    border-radius: 0.3rem;
+    position: relative;
+    text-align: center;
+}
+
+
+.catalog-wrapper:has(.catalog-element:hover) .catalog-element:not(:hover) {
+    filter: blur( 0.1rem);
+    /*background-color: #E6E6FA;*/
+}
+
+.catalog-element p {
+    font-size: 1.4vw;
+    position: absolute;
+    width:100%;
+    z-index: 2;
+}
+
+#catalog-title {
+    top:0;
+    background: #E6E6FA;
+    padding: 0.2rem;
+}
+
+#catalog-desc {
+    margin:0;
+    bottom:0;
+    background: #E6E6FA;
+    padding: 0.2rem;
+}

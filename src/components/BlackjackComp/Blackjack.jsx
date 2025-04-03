@@ -73,8 +73,6 @@ export default function Blackjack() {
     function handleHit() {
         const nyttKort = trekk();
         setPlayerHand([...playerHand, nyttKort]);
-
-        
         setPlayerHandSum(playerHandSum+=getValue(nyttKort,playerHandSum))
     }
     

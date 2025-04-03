@@ -33,9 +33,7 @@ const BilderSomTekst = ({ ord0 , tidligereGjett }) => { //setter inn ord0 som pa
     return (
         <div className="spillBokstaver" style={{}}>
             {ord0.split("").map((bokstav, index) => 
-                bokstav === " " ? (
-                    <span key={index} style={{width: "1rem"}}/>
-                    ) : tidligereGjett.includes(bokstav) ? (
+                tidligereGjett.includes(bokstav) ? (
                         <img key={index} src={getBokstavPNG(bokstav)} alt={bokstav}/>
                     ) : (
                         <img key={index} src="/Assets/HangBertAssets/alfabet/0_strek.png" alt="_" style={{marginTop :"2rem"}} />
