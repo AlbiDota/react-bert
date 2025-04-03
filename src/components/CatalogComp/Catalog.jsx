@@ -38,7 +38,6 @@ export default function Catalog() {
                 <img src={`/Assets/CatalogAssets/${image}`} alt={game}/>
                 <p id="catalog-desc">{descr}</p>
             </NavLink>
-
         </>);
     };
 };

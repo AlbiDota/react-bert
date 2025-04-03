@@ -1,8 +1,10 @@
 .catalog-wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap:1.5rem;
+    gap:1.4rem;
+
 }
 
 .catalog-wrapper img {
@@ -18,7 +20,6 @@
     position: relative;
     text-align: center;
 }
-
 
 .catalog-wrapper:has(.catalog-element:hover) .catalog-element:not(:hover) {
     filter: blur( 0.1rem);
