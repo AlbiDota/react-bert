@@ -7,7 +7,8 @@ import { doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 //bare noe gøy for å få et bilde til å spinne, litt som en fidget spinner eller noe sånt idk
 //man trykker på knappen og så spinner den litteranne.
 const BildeFidgetToy = () => {
-    const [spinner, settSpinner] = useState(false); //state for spinninganimasjonen y know
+    const [spinner, setSpinner] = useState(5); //state for spinninganimasjonen y know
+    
     const [totalClicks, setTotalClicks] = useState(0); // state for å lagre antall klikk totalt
     const [userClicks, setUserClicks] = useState(0);// state for å lagre antall klikk av brukern
 
@@ -44,8 +45,11 @@ const BildeFidgetToy = () => {
     
     //Når vi trykker knappen, ska vi sette "spinner" til true
     const handleClick = async ()=>{
-        settSpinner(true);
-        
+
+        //LEGENDARY GOATED WITH THE BOATED MOAT SPINNER LOGIC HERE
+        setSpinner((prev) => Math.max(prev * 0.8, 0.1)); //gange 0.x, for å korte ned duration (går fortere)
+        //OMEGA SLOWDOWN LOGIC ER LENGRE NEDE
+
         // forbedret påå denna måten for å ikke ha så svær latency mellom klikk og oppdatering på sida
         setTotalClicks((prev) => prev + 1);
         if (user) setUserClicks((prev) => prev + 1);
@@ -58,7 +62,6 @@ const BildeFidgetToy = () => {
         const userRef = doc(spinnerclicksRef, userID);
         const userDoc = await getDoc(userRef);
 
-        
         if (userDoc.exists()) {
             //hvis brukern finnes i systemet, oppdaterer vi numOfClicks med pluss en
             await updateDoc(userRef, {
@@ -79,12 +82,27 @@ const BildeFidgetToy = () => {
         //viste seg å skape for mye latency mellom klikk og visuell oppdatering
 
         //slutt å spinn
-        setTimeout(()=>{
-        settSpinner(false);
-        }, 90); // millisekunder delay før den slutter å spinne
+        // setTimeout(()=>{
+        // settSpinner(false);
+        // }, 90); // millisekunder delay før den slutter å spinne
 
     };
-
+    useEffect(() => {
+        let frame;
+        //OMEGA SLOWDOWN ER HER!! //senkes sakte med 0.1, grense på 0.1
+        const slowDown = () => {
+            setSpinner((prev) => {
+                if (prev<5) {
+                    frame = requestAnimationFrame(slowDown);
+                    return Math.min(prev * 1.1, 5); //gange med 1.x for å øke duration(treigere)
+                }
+                return prev;
+            });
+        }
+        frame = requestAnimationFrame(slowDown);
+        return () => cancelAnimationFrame(frame);
+    }, [spinner]);
+        
 
     //fetcher da når du går inn på sia eller refresher, (eller bytter bruker)
     useEffect(() => {
@@ -94,6 +112,7 @@ const BildeFidgetToy = () => {
         }
     }, [user]);
 
+    
 
     return (
         <div>
@@ -103,17 +122,13 @@ const BildeFidgetToy = () => {
                 .spinny-bilde {
                     height: 40vmin;
                     pointer-events: none;
-                    animation: ${spinner ? 'bilde-spin 0.1s linear' : 'none'};
-                    
+                    animation: bilde-spin ${spinner ==0 ? "0s" : `${spinner}s`} linear infinite;
+                    transition: animation-duration 0.5s ease-out;
                 }
                 
                 @keyframes bilde-spin {
-                    from {
-                        transform: rotate(0deg);
-                    }
-                    to {
-                        transform: rotate(360deg);
-                    }
+                    from {transform: rotate(0deg);}
+                    to {transform: rotate(360deg);}
                 }
 
             `}</style>

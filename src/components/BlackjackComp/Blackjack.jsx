@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import React from 'react'; 
 import "./Blackjack.css";
-//import "./Trekk.jsx";
+//import "./Trekk";
+import "./GameOver";
 
 import { firestore, auth, collection } from "../../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -65,9 +66,22 @@ export default function Blackjack() {
 
     //flagg for visning av dealers første kort
     const [viseKort, setViseKort] = useState(false);
+    let [gameStatus, setGameStatus] = useState("")
 
     //database stuff
     const [user] = useAuthState(auth);
+    const blackjackRef = collection(firestore, "blackjack");
+
+    //uid, displayName, email, wins, losses, coins
+    const fetchUserData = async () => {
+        if (!user) return;
+        const userRef = doc(blackjackRef, user.uid);
+        const userDoc = await getDoc(userRef);
+    }
+
+    //function COMPARISON FUNC HERE HANDLE WIN OG HANDLE LOSS KAN VÆRE TO FORSKJELLIGE FUNKSJONER
+    //SOM KALLES INNAD I DENNE, DEFINERT ANNA STED
+
     
 
     function handleHit() {
@@ -91,6 +105,17 @@ export default function Blackjack() {
         setDealerHandSum(finalDealerHandSum);
     }
 
+    function sammenliknHender(playerHandSum, dealerHandSum) {
+        if ((playerHandSum > dealerHandSum)){setGameStatus("player win");}
+        if ((playerHandSum < dealerHandSum)){setGameStatus("dealer win");}
+
+        if (dealerHandSum > 21) {setGameStatus("dealer bust");}
+        if (playerHandSum > 21) {setGameStatus("player bust");}
+
+        if (playerHandSum == dealerHandSum) {setGameStatus("push");}
+
+    }
+
     function handleStand() {//sammenlikning med dealers hånd
         setViseKort(true); //viser første kort
 
@@ -98,16 +123,18 @@ export default function Blackjack() {
             //VI LEGGER TIL DEN GJEMTE VERDIEN I hiddenCardValue
             let mellom = dealerHandSum + hiddenCardValue;
             setDealerHandSum(mellom);
-            
+            //TODO - SAMMENLIKNINGSLOGIKK HER
         }, 333);
-        //TODO - SAMMENLIKNINGSLOGIKK HER
+        
         //OG KANSKJE FINNE UT AV CASINOMUSIKK OG CSS ANIMASJONER FOR KORTA
-
+        
     }
     //nå har vi muligheten for å animere dramatisk delay og greier
     useEffect(() => {
         if (viseKort && dealerHandSum < 17) {setTimeout(() => trekkDealer(), 500);}
-    }, [dealerHandSum]);
+        if (viseKort && dealerHandSum > 17) {sammenliknHender(playerHandSum, dealerHandSum);}
+        if (playerHandSum > 21) { setViseKort(true); sammenliknHender(playerHandSum,dealerHandSum);}
+    }, [playerHandSum, dealerHandSum, viseKort]);
 
     /*useEffect(() => {
         setTimeout(() => {
@@ -123,6 +150,7 @@ export default function Blackjack() {
         setDealerHand([]);
         setDealerHandSum(0);
         setViseKort(false);
+        setGameStatus("");
         kortstokk = [
             ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"], // hjerter index 0
             ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"], // kløver index 1
@@ -171,7 +199,7 @@ export default function Blackjack() {
 
     return (
         <div className="blackjack-wrapper">
-            
+            <div>{gameStatus}</div>
             <div className="dealerHand">
                 {dealerHand.map((card,index) => (
                         <div key={index} className="card">{index === 0 && !viseKort ? "?" : card}</div>
@@ -192,7 +220,8 @@ export default function Blackjack() {
                 <button onClick={handleHit} 
                     style= {{cursor: playerHandSum>=21 || viseKort ? "not-allowed" : "pointer"}}
                     disabled={playerHandSum>=21 || viseKort ? true : false}>Hit</button>
-                <button onClick={handleStand}>Stand</button>
+                <button onClick={handleStand} style={{cursor: viseKort ? "not-allowed" : "pointer"}}
+                    disabled={viseKort ? true : false}>Stand</button>
                 <button onClick={restart}>Restart</button>
             </div>
         </div>

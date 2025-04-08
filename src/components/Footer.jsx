@@ -11,11 +11,11 @@ const Footer = () => {
                   <li><ul id="footerLeft">
                       <li><h3>Contact</h3></li>
                       <li>
-                            <strong><label HTMLFor="email">GitHub: </label></strong>
+                            <strong><label htmlFor="email">GitHub: </label></strong>
                             <a href="https://github.com/AlbiDota">github.com/AlbiDota</a>
                       </li>
                       <li>
-                            <strong><label HTMLFor="email">Epost: </label></strong>
+                            <strong><label htmlFor="email">Epost: </label></strong>
                             <a href="mailto:alisaele1@gmail.com">alisaele1@gmail.com </a>
                       </li>
                   </ul></li>

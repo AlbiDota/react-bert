@@ -1,3 +1,4 @@
+
 .blackjack-wrapper {
     display:flex;
     flex-direction:column;
@@ -29,6 +30,7 @@
 }
 
 .card {
+    user-select: none;
     min-width: 8rem;
     height: 12rem;
     background-color: whitesmoke;

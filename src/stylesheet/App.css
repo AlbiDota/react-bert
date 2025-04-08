@@ -7,6 +7,10 @@
   
 }
 
+img {
+	user-select: none;
+}
+
 html, body, .App {
   min-height: 100vh;
   min-width: 100vw;
@@ -65,6 +69,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 /* ---- End of reset ---- */
 
 .App-logo {
+	user-select: none;
 	margin-top:2rem;
 	height: 40vmin;
 	width: 40vmin;
@@ -154,7 +159,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 
 .back-to-top {
 	background-color: #800080;
-	color: #E6E6FA;
+	color: inherit;
 	border: none;
 	padding: 10px 20px;
 	cursor: pointer;

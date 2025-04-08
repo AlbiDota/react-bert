@@ -1,4 +1,3 @@
-import logo from '../bert.png';
 import '../stylesheet/App.css';
 import LoggInn from '../components/LoggInn';
 import KontaktOss from '../components/KontaktOss';
@@ -8,9 +7,8 @@ import Catalog from '../components/CatalogComp/Catalog.jsx';
 const Home = () => {
     return (
         <div className="App">
-            <img src={logo} className="App-logo" alt="logo" /> <br/>
-            <h1>react-bert</h1>
-            <br/>
+            <img src="/Assets/bert.png" className="App-logo" alt="logo" />
+            <h1 style={{userselect: "none"}}>react-bert</h1>
             <Catalog/>
             
         </div>
@@ -18,7 +16,6 @@ const Home = () => {
 };
 
 /*
-
       <style>
         .libutton {
           display: flex;
