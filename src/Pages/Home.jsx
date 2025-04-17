@@ -1,13 +1,14 @@
 import '../stylesheet/App.css';
-import LoggInn from '../components/LoggInn';
-import KontaktOss from '../components/KontaktOss';
 import Catalog from '../components/CatalogComp/Catalog.jsx';
-
-
+import { mirrorEasing, motion, reverseEasing } from 'framer-motion';
 const Home = () => {
     return (
         <div className="App">
-            <img src="/Assets/bert.png" className="App-logo" alt="logo" />
+            <motion.img src="/Assets/bert.png" className="App-logo" alt="logo" 
+				style={{}}
+				animate={{rotate:"360deg",}}
+				transition={{duration:6, repeat: Infinity, repeatType: "mirror" ,}}
+            />
             <h1 style={{userselect: "none"}}>react-bert</h1>
             <Catalog/>
             

@@ -77,7 +77,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	pointer-events: none;
 	border-radius: 50%;
 }
-
+/* 
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
 	animation: App-logo-spin infinite 15s linear;
@@ -100,7 +100,7 @@ LAVENDER #E6E6FA BORDER FOOTER OG NAVBAR #E6E6FA
 	100% {transform: rotate(0deg);}
 
 
-}
+} */
 
 .kontaktDiv {
 	display:inline-block;

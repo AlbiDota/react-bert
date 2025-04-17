@@ -16,6 +16,7 @@
     height: 15vw;
     position: relative;
     z-index: 1;
+	-webkit-user-drag: none;
 }
 
 .catalog-element {
@@ -23,11 +24,14 @@
     border-radius: 0.3rem;
     position: relative;
     text-align: center;
+    transition: 700ms;
+	-webkit-user-drag: none;
 }
 
 .catalog-wrapper:has(.catalog-element:hover) .catalog-element:not(:hover) {
-    filter: blur( 0.1rem);
+    filter: brightness( 0.8);
     /*background-color: #E6E6FA;*/
+    transition: 700ms ease-in-out;
 }
 
 .catalog-element p {

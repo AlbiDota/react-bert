@@ -69,7 +69,7 @@ export default function Blackjack() {
     let [gameStatus, setGameStatus] = useState("")
 
     //database stuff
-    const [user] = useAuthState(auth);
+    const [user] = useAuthState(auth); //let newName = user.displayName.split(" ")[0]
     const blackjackRef = collection(firestore, "blackjack");
 
     //uid, displayName, email, wins, losses, coins
@@ -112,7 +112,8 @@ export default function Blackjack() {
         if (dealerHandSum > 21) {setGameStatus("dealer bust");}
         if (playerHandSum > 21) {setGameStatus("player bust");}
 
-        if (playerHandSum == dealerHandSum) {setGameStatus("push");}
+        if (playerHandSum == dealerHandSum && playerHand.length == dealerHand.length) {setGameStatus("push");}
+        else if (playerHandSum == dealerHandSum && playerHand.length >= dealerHand.length){setGameStatus("player win");}
 
     }
 
@@ -124,6 +125,12 @@ export default function Blackjack() {
             let mellom = dealerHandSum + hiddenCardValue;
             setDealerHandSum(mellom);
             //TODO - SAMMENLIKNINGSLOGIKK HER
+            // if (mellom < 17) {
+            //     setTimeout(() => trekkDealer(), 500);
+            // } else {
+            //     sammenliknHender(playerHandSum, mellom);
+            // }
+
         }, 333);
         
         //OG KANSKJE FINNE UT AV CASINOMUSIKK OG CSS ANIMASJONER FOR KORTA
@@ -132,9 +139,9 @@ export default function Blackjack() {
     //nå har vi muligheten for å animere dramatisk delay og greier
     useEffect(() => {
         if (viseKort && dealerHandSum < 17) {setTimeout(() => trekkDealer(), 500);}
-        if (viseKort && dealerHandSum > 17) {sammenliknHender(playerHandSum, dealerHandSum);}
+        if (viseKort && dealerHandSum >= 17) {sammenliknHender(playerHandSum, dealerHandSum);}
         if (playerHandSum > 21) { setViseKort(true); sammenliknHender(playerHandSum,dealerHandSum);}
-    }, [playerHandSum, dealerHandSum, viseKort]);
+    }, [playerHandSum, dealerHandSum, /*viseKort*/]);
 
     /*useEffect(() => {
         setTimeout(() => {
@@ -199,7 +206,7 @@ export default function Blackjack() {
 
     return (
         <div className="blackjack-wrapper">
-            <div>{gameStatus}</div>
+            <div style={{position:"relative", padding:"-1%"}}>{gameStatus}</div>
             <div className="dealerHand">
                 {dealerHand.map((card,index) => (
                         <div key={index} className="card">{index === 0 && !viseKort ? "?" : card}</div>
@@ -214,7 +221,7 @@ export default function Blackjack() {
                 ))}
             </div>
             <div className="playerscore">
-                {user ? "newName" : "player"}{playerHandSum !== 0 ? <h2>{playerHandSum}</h2> : <></>}
+                {user ? user.displayName.split(" ")[0] : "player"}{playerHandSum !== 0 ? <h2>{playerHandSum}</h2> : <></>}
             </div>
             <div className="knapper">
                 <button onClick={handleHit} 

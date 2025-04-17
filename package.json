@@ -1,11 +1,12 @@
 {
   "name": "react-bert",
-  "version": "0.1.0",
+  "version": "0.1.23",
   "private": true,
   "dependencies": {
     "bad-words": "^4.0.0",
     "cra-template": "1.2.0",
     "firebase": "^11.4.0",
+    "motion": "^12.7.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
